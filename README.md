@@ -18,7 +18,7 @@ Pure **HTML + CSS + JavaScript** (no frameworks). Fully responsive, smooth scrol
 1. **WhatsApp number**
    - Open `script.js`
    - Replace:
-     - `whatsappNumber: "916265660387"`
+     - `whatsappNumber: "9170001 50604"`
    - Use format: **countrycode + number** (no `+`, no spaces)
 
 2. **City/Area used in booking message**
