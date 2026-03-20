@@ -116,16 +116,38 @@ button,input,select{font:inherit}
 /* HERO */
 .hero{
   padding:110px 0 90px;
+  position:relative;
+  overflow:hidden;
   background-color:var(--bg);
-  background-image:
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url('./background.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:0;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
     radial-gradient(900px 420px at 10% 10%, rgba(0,174,239,.18), transparent 60%),
     radial-gradient(900px 420px at 90% 10%, rgba(40,199,111,.14), transparent 55%),
     linear-gradient(180deg, rgba(11,60,93,.10), transparent 55%),
-    linear-gradient(180deg, rgba(0,174,239,.10), rgba(244,250,255,.55)),
-    url('./background.png');
-  background-size:auto, auto, auto, auto, cover;
-  background-position:center;
-  background-repeat:no-repeat;
+    linear-gradient(180deg, rgba(0,174,239,.10), rgba(244,250,255,.55));
+  z-index:1;
+  pointer-events:none;
+}
+
+.hero .hero__grid{
+  position:relative;
+  z-index:2;
 }
 .hero__grid{
   display:grid;
@@ -672,6 +694,7 @@ select.field__input{appearance:none;background-image:linear-gradient(45deg, tran
 @media (max-width: 520px){
   .section{padding:78px 0}
   .hero{padding:96px 0 78px}
+  .hero::before{background-position:center top}
   .svcPane{padding:18px}
   .svcGrid{gap:10px}
   .formCard{padding:18px}
