@@ -1,6 +1,7 @@
 (() => {
   const CONFIG = {
-    whatsappNumber: "9170001 50604", // TODO: Replace with your WhatsApp number (countrycode + number, no + or spaces)
+    // Countrycode + number in digits only (no "+" or spaces) for https://wa.me/ links
+    whatsappNumber: "917000150604",
     defaultCity: "Your City",
   };
 
