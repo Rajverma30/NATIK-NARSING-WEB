@@ -138,6 +138,8 @@
       const name = String(fd.get("name") || "").trim();
       const phone = sanitizePhone(fd.get("phone"));
       const service = String(fd.get("service") || "").trim();
+      const date = String(fd.get("date") || "").trim();
+      const time = String(fd.get("time") || "").trim();
 
       const message = [
         "Hello Naitik Enterprises!",
@@ -146,6 +148,8 @@
         `Name: ${name}`,
         `Phone: ${phone}`,
         `Service: ${service}`,
+        `Preferred Date: ${date}`,
+        `Preferred Time: ${time}`,
         `City/Area: ${CONFIG.defaultCity}`,
       ].join("\n");
 
@@ -171,21 +175,12 @@
       const qualification = String(fd.get("qualification") || "").trim();
       const experience = Number(fd.get("experience") || "0");
       const address = String(fd.get("address") || "").trim();
-      const files = fd.getAll("documents").filter((f) => f && typeof f === "object" && f.name);
 
       if (name.length < 2) return "Please enter your full name.";
       if (phone.length < 10) return "Please enter a valid phone number.";
       if (qualification.length < 2) return "Please enter your qualification.";
       if (!Number.isFinite(experience) || experience < 0) return "Please enter valid experience.";
       if (address.length < 6) return "Please enter your full address.";
-      if (!files.length) return "Please upload at least one document.";
-      if (files.length > 5) return "Please upload a maximum of 5 files.";
-
-      const allowed = ["application/pdf", "image/png", "image/jpeg"];
-      for (const f of files) {
-        if (!allowed.includes(f.type)) return "Only PDF, JPG, or PNG documents are allowed.";
-        if (f.size > 6 * 1024 * 1024) return "Each file must be under 6MB.";
-      }
       return null;
     };
 
@@ -198,7 +193,25 @@
         return;
       }
 
-      show("Application submitted successfully! Our team will contact you soon.", "success");
+      const name = String(fd.get("name") || "").trim();
+      const phone = sanitizePhone(fd.get("phone"));
+      const qualification = String(fd.get("qualification") || "").trim();
+      const experience = String(fd.get("experience") || "").trim();
+      const address = String(fd.get("address") || "").trim();
+
+      const message = [
+        "Hello Naitik Enterprises!",
+        "Nurse application details:",
+        "",
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Qualification: ${qualification}`,
+        `Experience (years): ${experience}`,
+        `Address: ${address}`,
+      ].join("\n");
+
+      window.open(buildWhatsAppUrl(message), "_blank", "noopener");
+      show("Application details sent to WhatsApp.", "success");
       form.reset();
       setTimeout(() => alert.classList.remove("is-show"), 4500);
     });

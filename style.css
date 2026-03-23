@@ -125,11 +125,22 @@ button,input,select{font:inherit}
   content:"";
   position:absolute;
   inset:0;
-  background-image:url('./background.png');
+  background-image:url('./images/background.png');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   z-index:0;
+}
+
+/* Different hero background images per page so pages don't look like each other */
+.hero[aria-label="Housekeeping Hero"]::before{
+  background-image:url('./images/housekeeping.avif');
+  background-position:center;
+}
+
+.hero[aria-label="Choose Service"]::before{
+  background-image:url('./images/indexbackground.png');
+  background-position:center;
 }
 
 .hero::after{
@@ -143,6 +154,78 @@ button,input,select{font:inherit}
     linear-gradient(180deg, rgba(0,174,239,.10), rgba(244,250,255,.55));
   z-index:1;
   pointer-events:none;
+}
+
+/* Slightly different tint for Housekeeping hero to avoid nursing-like feel */
+.hero[aria-label="Housekeeping Hero"]::after{
+  background:
+    radial-gradient(900px 420px at 10% 10%, rgba(40,199,111,.22), transparent 60%),
+    radial-gradient(900px 420px at 90% 10%, rgba(0,174,239,.18), transparent 55%),
+    linear-gradient(180deg, rgba(0,174,239,.08), transparent 55%),
+    linear-gradient(180deg, rgba(40,199,111,.08), rgba(244,250,255,.68));
+}
+
+/* Medical-style theme for Choose Service page */
+.hero[aria-label="Choose Service"]::after{
+  background:
+    radial-gradient(900px 420px at 10% 10%, rgba(0,174,239,.28), transparent 60%),
+    radial-gradient(900px 420px at 90% 10%, rgba(11,60,93,.18), transparent 55%),
+    linear-gradient(180deg, rgba(11,60,93,.14), transparent 55%),
+    linear-gradient(180deg, rgba(0,174,239,.10), rgba(244,250,255,.78));
+}
+
+.hero[aria-label="Choose Service"] .pill{
+  background:rgba(0,174,239,.10);
+  border-color:rgba(0,174,239,.22);
+  color:rgba(11,60,93,.92);
+}
+
+.hero[aria-label="Choose Service"] .hero__title{
+  font-size:clamp(2.2rem, 3.6vw, 3.6rem);
+  line-height:1.1;
+}
+
+.hero[aria-label="Choose Service"] .hero__subtitle{
+  max-width:70ch;
+  font-size:1.02rem;
+}
+
+.hero[aria-label="Choose Service"] .chooseOptions,
+#choose .chooseOptions{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:14px 14px;
+  border-radius:24px;
+  border:1px solid rgba(0,174,239,.22);
+  background:linear-gradient(180deg, rgba(0,174,239,.08), rgba(244,250,255,.78));
+  box-shadow:0 18px 40px rgba(2,18,35,.06);
+}
+
+#choose .chooseOptions .btn,
+.hero[aria-label="Choose Service"] .chooseOptions .btn{
+  padding:14px 20px;
+  border-radius:18px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+
+#choose .chooseOptions .btn:hover,
+.hero[aria-label="Choose Service"] .chooseOptions .btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 22px 46px rgba(2,18,35,.12);
+}
+
+@media (max-width: 520px){
+  #choose .chooseOptions,
+  .hero[aria-label="Choose Service"] .chooseOptions{
+    padding:12px;
+  }
+  #choose .chooseOptions .btn,
+  .hero[aria-label="Choose Service"] .chooseOptions .btn{
+    width:100%;
+  }
 }
 
 .hero .hero__grid{
@@ -226,6 +309,13 @@ button,input,select{font:inherit}
 }
 .trustItem__icon--blue{background:rgba(0,174,239,.16);color:#056b9b}
 .trustItem__icon--green{background:rgba(40,199,111,.18);color:#0a6a3b}
+
+.trustItem__icon svg{
+  width:18px;
+  height:18px;
+  display:block;
+  fill:currentColor;
+}
 .trustItem__text strong{display:block;font-size:.95rem}
 .trustItem__text span{display:block;color:var(--muted);font-size:.82rem}
 
@@ -334,6 +424,13 @@ button,input,select{font:inherit}
   background:rgba(0,174,239,.16);
   margin-bottom:10px;
 }
+
+.svcCard__icon svg{
+  width:18px;
+  height:18px;
+  display:block;
+  fill:currentColor;
+}
 .svcCard__title{margin:0 0 6px;font-size:1.02rem;letter-spacing:-.01em}
 .svcCard__text{margin:0;color:var(--muted);font-size:.88rem}
 
@@ -377,6 +474,13 @@ button,input,select{font:inherit}
 }
 .featureCard__icon--blue{background:rgba(0,174,239,.16);color:#056b9b}
 .featureCard__icon--green{background:rgba(40,199,111,.18);color:#0a6a3b}
+
+.featureCard__icon svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:currentColor;
+}
 .featureCard__title{margin:0 0 8px;letter-spacing:-.02em}
 .featureCard__text{margin:0;color:var(--muted)}
 
@@ -425,6 +529,13 @@ button,input,select{font:inherit}
   background:rgba(11,60,93,.12);
 }
 .contactStrip__icon--blue{background:rgba(0,174,239,.16)}
+
+.contactStrip__icon svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:currentColor;
+}
 .contactStrip__label{color:var(--muted);font-size:.82rem}
 .contactStrip__value{font-weight:700}
 
