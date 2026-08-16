@@ -274,69 +274,7 @@
           </div>
 
           <div class="hero__media" id="heroMedia">
-            <!-- NURSING: cinematic video card -->
-            <div class="nursingVideoWrap" data-service-panel="nursing" id="nursingVideoWrap">
-              <div class="nursingVideoBadge">
-                <span class="nursingVideoBadge__dot" aria-hidden="true"></span>
-                Nursing Services
-              </div>
-              <div class="nursingVideo" id="nursingVideoCard">
-                <div class="nursingVideo__glow" aria-hidden="true"></div>
-                <div class="nursingVideo__frame">
-                  <img
-                    class="nursingVideo__poster"
-                    id="nursingVideoPoster"
-                    src="./images/nursing-video-poster.webp"
-                    alt=""
-                    width="960"
-                    height="540"
-                    decoding="async"
-                  />
-                  <video
-                    class="nursingVideo__el"
-                    id="nursingHeroVideo"
-                    muted
-                    loop
-                    playsinline
-                    preload="none"
-                    poster="./images/nursing-video-poster.webp"
-                    aria-label="Naitik Enterprises nursing care animation"
-                  >
-                    <source src="./videos/nursing-hero.mp4" type="video/mp4" />
-                  </video>
-                  <button
-                    class="nursingVideo__sound"
-                    type="button"
-                    id="nursingVideoSound"
-                    aria-label="Unmute video"
-                    aria-pressed="false"
-                    title="Sound on/off"
-                  >
-                    <span class="nursingVideo__soundIcon nursingVideo__soundIcon--off" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M11 5L6 9H3v6h3l5 4V5z" />
-                        <path d="M23 9l-6 6M17 9l6 6" />
-                      </svg>
-                    </span>
-                    <span class="nursingVideo__soundIcon nursingVideo__soundIcon--on" aria-hidden="true" hidden>
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M11 5L6 9H3v6h3l5 4V5z" />
-                        <path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14" />
-                      </svg>
-                    </span>
-                  </button>
-                  <button class="nursingVideo__play" type="button" id="nursingVideoPlay" hidden aria-label="Play nursing video">
-                    Play
-                  </button>
-                  <span class="nursingVideo__sweep" aria-hidden="true"></span>
-                </div>
-                <svg class="nursingVideo__ecg" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M0 20 H70 L85 20 L95 6 L108 34 L120 20 H200 L215 20 L225 8 L238 32 L250 20 H400" />
-                </svg>
-              </div>
-            </div>
-
-            <!-- HOUSEKEEPING: image card -->
+            <!-- HOUSEKEEPING: image card (nursing video lives only in #cineStory below) -->
             <div data-service-panel="housekeeping" hidden>
               <div class="statusCard" data-status-card>
                 <div class="statusCard__live">

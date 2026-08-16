@@ -425,22 +425,16 @@
 
   const nursingVideo = (() => {
     let started = false;
-    let tiltBound = false;
     let soundOn = false;
     let soundBound = false;
     let visibilityBound = false;
-    let heroVisible = true;
     let cineVisible = false;
 
     const els = () => ({
-      card: $("#nursingVideoCard"),
-      video: $("#nursingHeroVideo"),
-      playBtn: $("#nursingVideoPlay"),
       soundBtns: $$(".nursingVideo__sound"),
       cine: $("#cineStoryVideo"),
       shell: $("#cineStoryShell"),
       story: $("#cineStory"),
-      wrap: $("#nursingVideoWrap"),
     });
 
     const syncSoundUi = () => {
@@ -456,12 +450,11 @@
     };
 
     const applyMuteState = () => {
-      const { video, cine } = els();
-      [video, cine].forEach((v) => {
-        if (!v) return;
-        v.muted = !soundOn;
-        v.volume = 1;
-      });
+      const { cine } = els();
+      if (cine) {
+        cine.muted = !soundOn;
+        cine.volume = 1;
+      }
       syncSoundUi();
     };
 
@@ -486,10 +479,8 @@
     };
 
     const pauseAll = () => {
-      const { video, cine } = els();
-      [video, cine].forEach((v) => {
-        if (v && !v.paused) v.pause();
-      });
+      const { cine } = els();
+      if (cine && !cine.paused) cine.pause();
     };
 
     const syncPlaybackToVisibility = () => {
@@ -497,15 +488,9 @@
         pauseAll();
         return;
       }
-      const { video, cine } = els();
-
-      // Prefer cine when it's on screen; otherwise hero if visible
+      const { cine } = els();
       if (cineVisible && cine) {
-        if (video && !video.paused) video.pause();
         if (cine.paused) tryPlay(cine);
-      } else if (heroVisible && video) {
-        if (cine && !cine.paused) cine.pause();
-        if (video.paused) tryPlay(video);
       } else {
         pauseAll();
       }
@@ -513,7 +498,7 @@
 
     const bindSound = () => {
       if (soundBound) return;
-      const { soundBtns, video, cine } = els();
+      const { soundBtns, cine } = els();
       if (!soundBtns.length) return;
       soundBound = true;
 
@@ -523,12 +508,10 @@
           e.stopPropagation();
           soundOn = !soundOn;
           applyMuteState();
-          const active =
-            cine && !cine.paused ? cine : video && !video.paused ? video : cineVisible ? cine : video;
-          if (active) {
+          if (cine) {
             try {
-              active.muted = !soundOn;
-              if (active.paused) await active.play();
+              cine.muted = !soundOn;
+              if (cine.paused) await cine.play();
             } catch (_) {
               soundOn = false;
               applyMuteState();
@@ -541,16 +524,13 @@
 
     const bindVisibilityPause = () => {
       if (visibilityBound) return;
-      const { video, cine, wrap, shell, story } = els();
-      if (!video && !cine) return;
+      const { cine, shell, story } = els();
+      if (!cine) return;
       visibilityBound = true;
 
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.target === wrap || entry.target === video) {
-              heroVisible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
-            }
             if (entry.target === shell || entry.target === story || entry.target === cine) {
               cineVisible = entry.isIntersecting && entry.intersectionRatio >= 0.25;
             }
@@ -560,77 +540,25 @@
         { threshold: [0, 0.25, 0.35, 0.5, 0.75] }
       );
 
-      if (wrap) io.observe(wrap);
-      else if (video) io.observe(video);
       if (shell) io.observe(shell);
       else if (story) io.observe(story);
-      else if (cine) io.observe(cine);
+      else io.observe(cine);
 
-      // Also pause when tab is hidden
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) pauseAll();
         else syncPlaybackToVisibility();
       });
     };
 
-    const loadAndPlay = async () => {
-      const { video, card, playBtn } = els();
-      if (!video) return;
+    const prepareCine = () => {
+      const { cine } = els();
+      if (!cine) return;
       bindSound();
       bindVisibilityPause();
-      if (video.preload !== "metadata") video.preload = "metadata";
-      if (!video.src && !video.currentSrc) video.load();
-
+      if (cine.preload !== "metadata") cine.preload = "metadata";
       soundOn = false;
       applyMuteState();
-
-      const ok = await tryPlay(video);
-      if (ok) {
-        card?.classList.add("is-ready");
-        if (playBtn) playBtn.hidden = true;
-      } else if (playBtn) {
-        playBtn.hidden = false;
-        playBtn.onclick = async () => {
-          const played = await tryPlay(video);
-          if (played) {
-            card?.classList.add("is-ready");
-            playBtn.hidden = true;
-          }
-        };
-      }
-
-      video.addEventListener(
-        "playing",
-        () => {
-          card?.classList.add("is-ready");
-          if (playBtn) playBtn.hidden = true;
-        },
-        { once: true }
-      );
-    };
-
-    const bindTilt = () => {
-      if (tiltBound || reduceMotion()) return;
-      const { card } = els();
-      if (!card) return;
-      if (window.matchMedia("(max-width: 980px), (hover:none)").matches) return;
-      tiltBound = true;
-      const media = $("#heroMedia");
-      if (!media) return;
-
-      media.addEventListener("pointermove", (e) => {
-        if (document.body.getAttribute("data-service") !== "nursing") return;
-        if (reduceMotion()) return;
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const rotY = Math.max(-3.5, Math.min(3.5, x * 7));
-        const rotX = Math.max(-3, Math.min(3, -y * 6));
-        card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-      });
-      media.addEventListener("pointerleave", () => {
-        card.style.transform = "";
-      });
+      syncPlaybackToVisibility();
     };
 
     const bindCineScroll = () => {
@@ -650,7 +578,7 @@
         const total = story.offsetHeight - window.innerHeight;
         const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
         const p = scrolled / Math.max(total, 1);
-        const scale = 1 + p * 0.12; // max ~1.12 — keep sound button + captions visible
+        const scale = 1 + p * 0.12;
         shell.style.setProperty("--cine-scale", String(scale));
         const maxW = Math.min(720, window.innerWidth - 72);
         const baseW = Math.min(520, window.innerWidth - 96);
@@ -659,7 +587,6 @@
         const idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
         steps.forEach((el, i) => el.classList.toggle("is-active", i === idx));
 
-        // Playback is handled by visibility observer (pause when off-screen)
         syncPlaybackToVisibility();
       };
 
@@ -677,30 +604,20 @@
     const start = () => {
       if (document.body.classList.contains("is-gated")) return;
       started = true;
-      const wrap = $("#nursingVideoWrap");
-      window.setTimeout(() => wrap?.classList.add("is-in"), 1100);
-      loadAndPlay();
-      bindTilt();
-      const { cine } = els();
-      if (cine) cine.preload = "none";
+      prepareCine();
     };
 
     const hardStop = () => {
-      const { video, cine, card, playBtn } = els();
+      const { cine } = els();
       soundOn = false;
       applyMuteState();
-      [video, cine].forEach((v) => {
-        if (!v) return;
-        v.pause();
+      if (cine) {
+        cine.pause();
         try {
-          v.load();
+          cine.load();
         } catch (_) {}
-      });
-      card?.classList.remove("is-ready");
-      $("#nursingVideoWrap")?.classList.remove("is-in");
-      if (playBtn) playBtn.hidden = true;
+      }
       started = false;
-      heroVisible = false;
       cineVisible = false;
     };
 
