@@ -5,30 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Choose a service: Nursing or Housekeeping by Naitik Enterprises."
+      id="metaDescription"
+      content="Book trusted home nursing care with Naitik Enterprises. Trained professionals, reliable coordination, and care at your doorstep."
     />
-    <title>Naitik Enterprises - Choose Service</title>
+    <title>Home Nursing Care | Naitik Enterprises</title>
+
+    <!-- Favicon / URL bar icon (logo without Nursing & Housekeeping pills) -->
+    <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="./images/brand/favicon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="./images/brand/favicon-180.png" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+
+    <!-- Meta Ads / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Naitik Enterprises" />
+    <meta property="og:title" id="ogTitle" content="Home Nursing Care | Naitik Enterprises" />
+    <meta
+      property="og:description"
+      id="ogDescription"
+      content="Professional nursing care at home. Book on WhatsApp — trained staff and reliable coordination."
+    />
+    <meta property="og:image" id="ogImage" content="./images/brand/logo-full.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" id="twTitle" content="Home Nursing Care | Naitik Enterprises" />
+    <meta
+      name="twitter:description"
+      id="twDescription"
+      content="Professional nursing care at home. Book on WhatsApp — trained staff and reliable coordination."
+    />
+    <link rel="canonical" id="canonicalLink" href="/?service=nursing" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
+    <link rel="preload" as="image" href="./images/nursing-bg-1280.webp" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="./style.css" />
   </head>
 
-  <body>
+  <body data-service="nursing" class="is-gated">
     <a class="skip-link" href="#home">Skip to content</a>
+
+    <!-- Service transition overlay -->
+    <div class="modeFx" id="modeFx" aria-hidden="true">
+      <svg class="modeFx__svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path class="modeFx__path" id="modeFxPath" d="" fill="none" />
+      </svg>
+      <div class="modeFx__sparks" id="modeFxSparks"></div>
+    </div>
+
+    <!-- First-visit service selection -->
+    <div
+      class="welcome"
+      id="welcomeModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="welcomeTitle"
+      hidden
+    >
+      <div class="welcome__backdrop" aria-hidden="true"></div>
+      <div class="welcome__panel">
+        <p class="welcome__brand">
+          <img
+            class="welcome__logo"
+            src="./images/brand/logo-full.webp"
+            width="280"
+            height="186"
+            alt="Naitik Enterprises"
+            decoding="async"
+          />
+        </p>
+        <p class="welcome__tagline">Your home. Our care.</p>
+        <h2 class="welcome__title" id="welcomeTitle">What service are you looking for?</h2>
+        <p class="welcome__sub">
+          Choose a service to explore the right care and support for your needs.
+        </p>
+
+        <div class="welcome__cards">
+          <button
+            type="button"
+            class="welcomeCard welcomeCard--nursing"
+            data-welcome-service="nursing"
+          >
+            <span class="welcomeCard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M4 12h3l2-4 3 7 2-3h6"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="welcomeCard__label">Nursing</span>
+            <span class="welcomeCard__desc">Professional nursing and home healthcare support.</span>
+            <span class="welcomeCard__cta">Explore Nursing <span aria-hidden="true">→</span></span>
+            <span class="welcomeCard__trail welcomeCard__trail--ecg" aria-hidden="true"></span>
+          </button>
+
+          <button
+            type="button"
+            class="welcomeCard welcomeCard--housekeeping"
+            data-welcome-service="housekeeping"
+          >
+            <span class="welcomeCard__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 12l8-7 8 7v8a1 1 0 0 1-1 1h-5v-5H10v5H5a1 1 0 0 1-1-1v-8z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="welcomeCard__label">Housekeeping</span>
+            <span class="welcomeCard__desc">Reliable housekeeping and home support services.</span>
+            <span class="welcomeCard__cta">Explore Housekeeping <span aria-hidden="true">→</span></span>
+            <span class="welcomeCard__trail welcomeCard__trail--sparkle" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <header class="header" id="top">
       <nav class="nav" aria-label="Primary navigation">
         <div class="container nav__inner">
-          <a class="brand" href="index.html" aria-label="Naitik Enterprises Home">
-            <span class="brand__mark" aria-hidden="true">NE</span>
-            <span class="brand__name">Naitik Enterprises</span>
+          <a class="brand" href="/" aria-label="Naitik Enterprises Home">
+            <img
+              class="brand__logo"
+              src="./images/brand/logo-full.webp"
+              width="220"
+              height="146"
+              alt="Naitik Enterprises — Your Home. Our Care."
+              decoding="async"
+            />
+            <span class="brand__service" data-service-label>Nursing</span>
           </a>
+
+          <div
+            class="serviceSwitch"
+            role="radiogroup"
+            aria-label="Select service"
+            id="serviceSwitch"
+          >
+            <button
+              type="button"
+              class="serviceSwitch__opt is-active"
+              role="radio"
+              aria-checked="true"
+              data-set-service="nursing"
+              id="switchNursing"
+            >
+              Nursing
+            </button>
+            <button
+              type="button"
+              class="serviceSwitch__opt"
+              role="radio"
+              aria-checked="false"
+              data-set-service="housekeeping"
+              id="switchHousekeeping"
+            >
+              Housekeeping
+            </button>
+            <span class="serviceSwitch__pill" aria-hidden="true"></span>
+          </div>
 
           <button
             class="nav__toggle"
@@ -41,144 +191,744 @@
           </button>
 
           <div class="nav__menu" id="navMenu">
-            <a class="nav__link" href="nursing.html">Nursing</a>
-            <a class="nav__link" href="housekeeping.html">Housekeeping</a>
+            <a class="nav__link" href="#about">About</a>
+            <a class="nav__link" href="#services">Services</a>
+            <a class="nav__link" href="#why">Why Us</a>
+            <a class="nav__link" href="#journey">Process</a>
+            <a class="nav__link nav__link--cta" href="#contact" data-book-cta>Book Now</a>
           </div>
         </div>
       </nav>
     </header>
 
     <main id="home">
-      <section class="hero section" aria-label="Choose Service">
-        <div class="container hero__grid" style="grid-template-columns:1fr">
-          <div class="hero__content reveal" style="text-align:center">
-            <div class="pill">
+      <!-- HERO -->
+      <section class="hero section" aria-label="Hero">
+        <div class="hero__atmosphere" aria-hidden="true">
+          <div class="hero__bg hero__bg--nursing"></div>
+          <div class="hero__bg hero__bg--housekeeping"></div>
+          <div class="hero__bgScrim"></div>
+          <div class="hero__gridFx"></div>
+          <div class="hero__particles" id="heroParticles"></div>
+          <div class="hero__sweep"></div>
+        </div>
+
+        <div class="container hero__grid">
+          <div class="hero__content" id="heroContent">
+            <div class="pill heroReveal" data-hero-pill style="--d:0">
               <span class="dot" aria-hidden="true"></span>
-              Your safety, your comfort • Home care & housekeeping
+              <span data-hero-pill-text>Trusted home nursing • Coordinated care</span>
             </div>
 
-            <h1 class="hero__title">Naitik Enterprises</h1>
-
-            <p class="hero__subtitle" style="margin-top:10px; font-weight:600; color:rgba(11,60,93,.88);">
-              <a href="#choose" style="text-decoration:underline;">
-                Your trusted partner for housekeeping and nursing services – Naitik Enterprises.
-              </a>
+            <h1 class="hero__title heroReveal" data-hero-title style="--d:1">Professional Care. Right at Home.</h1>
+            <p class="hero__subtitle heroReveal" data-hero-subtitle style="--d:2">
+              Trusted nursing support designed around the comfort and needs of your home.
             </p>
 
-            <p class="hero__subtitle" style="margin-top:6px;">
-              We provide trained teams, safe practices, and reliable coordination so your space stays
-              clean, hygienic, and stress-free.
-            </p>
-
-            <div class="hero__actions" style="justify-content:center; margin-top:16px;">
-              <a class="btn btn--primary" href="#choose">Explore Services</a>
+            <div class="hero__actions heroReveal" style="--d:3">
+              <a class="btn btn--primary" href="#contact" data-hero-cta>Book Nursing Service →</a>
+              <a class="btn btn--ghost" data-whatsapp-link href="#" rel="noopener">WhatsApp Us</a>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section section--soft" id="choose" aria-label="Choose Our Service">
-        <div class="container">
-          <div class="sectionHead reveal" style="max-width:860px; margin-inline:auto; text-align:center;">
-            <h2 class="sectionHead__title" style="margin-bottom:8px;">Choose Our Service</h2>
-            <p class="sectionHead__subtitle">Pick Nursing or Housekeeping — we coordinate your team and schedule.</p>
-          </div>
-
-          <div class="chooseOptions reveal">
-            <a class="btn btn--primary" href="nursing.html">Nursing Services</a>
-            <a class="btn btn--primary" href="housekeeping.html">Housekeeping Services</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--soft" id="about" aria-label="About Us">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <h2 class="sectionHead__title">About Naitik Enterprises</h2>
-            <p class="sectionHead__subtitle">
-              We provide trusted home care with the right hygiene and coordination—covering both
-              <strong>Nursing</strong> and <strong>Housekeeping</strong> services.
-            </p>
-          </div>
-
-          <div class="twoCol">
-            <div class="twoCol__left reveal">
-              <h3 class="twoCol__title">Founder</h3>
-              <div class="founderPhotoWrap">
-                <img
-                  class="founderPhoto"
-                  src="./images/founder%20photo.png"
-                  alt="Founder Pramila Gehlot"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <h4 class="founderName">Pramila Gehlot</h4>
-                <p class="twoCol__text">
-          Pramila Gehlot, founder of <strong>Naitik Enterprises</strong>, is dedicated to ensuring comfort and care for patients and families. With a strong focus on trained professionals, consistent hygiene, and timely service, the organization delivers dependable support.
-                </p>
-                <p class="twoCol__text">
-                  From home nursing to professional housekeeping, every service is carried out with safe practices and thoughtful planning to maintain a clean, healthy, and stress-free environment.
-                </p>
+            <div class="hero__trust heroReveal" data-service-panel="nursing" style="--d:4">
+              <div class="trustItem">
+                <div class="trustItem__icon" aria-hidden="true">✓</div>
+                <div class="trustItem__text">
+                  <strong>Trained professionals</strong><span>Skilled home care staff</span>
+                </div>
               </div>
-            </div>
-
-            <div class="twoCol__right reveal">
-              <div class="featureCard">
-                <div class="featureCard__icon" aria-hidden="true">🛡️</div>
-                <h3 class="featureCard__title">Quality &amp; Hygiene</h3>
-                <p class="featureCard__text">Safe procedures, trained supervision, and hygiene-first work.</p>
+              <div class="trustItem">
+                <div class="trustItem__icon trustItem__icon--blue" aria-hidden="true">⏱</div>
+                <div class="trustItem__text">
+                  <strong>Reliable coordination</strong><span>Clear scheduling & support</span>
+                </div>
               </div>
-              <div class="featureCard" style="margin-top:14px;">
-                <div class="featureCard__icon featureCard__icon--blue" aria-hidden="true">🤝</div>
-                <h3 class="featureCard__title">Trusted Coordination</h3>
-                <p class="featureCard__text">Reliable scheduling and easy communication for both services.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="location" aria-label="Location">
-        <div class="container">
-          <div class="sectionHead reveal">
-            <h2 class="sectionHead__title">Visit / Contact</h2>
-            <p class="sectionHead__subtitle">
-              Reach out for availability and pricing.
-            </p>
-          </div>
-
-          <div class="locGrid">
-            <div class="locInfo reveal">
-              <div class="locCard">
-                <h3 class="locCard__title">Naitik Enterprises</h3>
-                <p class="locCard__text">
-                  Address: <span data-address>Enter your address here</span>
-                </p>
-                <p class="locCard__text">Phone: <span data-phone>+91 70001 50604</span></p>
-                <div class="locActions">
-                  <a
-                    class="btn btn--primary"
-                    data-whatsapp-link
-                    href="#"
-                    rel="noopener"
-                    aria-label="WhatsApp Now"
-                    >WhatsApp Now</a
-                  >
-                  <a class="btn btn--ghost" href="nursing.html#contact">Book Nursing</a>
-                  <a class="btn btn--ghost" href="housekeeping.html#contact">Book Housekeeping</a>
+              <div class="trustItem">
+                <div class="trustItem__icon trustItem__icon--green" aria-hidden="true">★</div>
+                <div class="trustItem__text">
+                  <strong>Home-focused care</strong><span>Support where you need it</span>
                 </div>
               </div>
             </div>
 
-            <div class="mapWrap reveal">
-              <div class="mapCard" aria-label="Google Map">
-                <iframe
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps?q=22.7072337,75.9017387&output=embed"
-                  title="Google Maps location"
-                ></iframe>
+            <div class="hero__trust heroReveal" data-service-panel="housekeeping" hidden style="--d:4">
+              <div class="trustItem">
+                <div class="trustItem__icon" aria-hidden="true">✓</div>
+                <div class="trustItem__text">
+                  <strong>Trained teams</strong><span>Verified and professional</span>
+                </div>
               </div>
+              <div class="trustItem">
+                <div class="trustItem__icon trustItem__icon--blue" aria-hidden="true">◈</div>
+                <div class="trustItem__text">
+                  <strong>Safe cleaning</strong><span>Hygiene-focused practices</span>
+                </div>
+              </div>
+              <div class="trustItem">
+                <div class="trustItem__icon trustItem__icon--green" aria-hidden="true">★</div>
+                <div class="trustItem__text">
+                  <strong>Clean results</strong><span>Comfort and reliability</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__media" id="heroMedia">
+            <!-- NURSING: cinematic video card -->
+            <div class="nursingVideoWrap" data-service-panel="nursing" id="nursingVideoWrap">
+              <div class="nursingVideoBadge">
+                <span class="nursingVideoBadge__dot" aria-hidden="true"></span>
+                Nursing Services
+              </div>
+              <div class="nursingVideo" id="nursingVideoCard">
+                <div class="nursingVideo__glow" aria-hidden="true"></div>
+                <div class="nursingVideo__frame">
+                  <img
+                    class="nursingVideo__poster"
+                    id="nursingVideoPoster"
+                    src="./images/nursing-video-poster.webp"
+                    alt=""
+                    width="960"
+                    height="540"
+                    decoding="async"
+                  />
+                  <video
+                    class="nursingVideo__el"
+                    id="nursingHeroVideo"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    poster="./images/nursing-video-poster.webp"
+                    aria-label="Naitik Enterprises nursing care animation"
+                  >
+                    <source src="./videos/nursing-hero.mp4" type="video/mp4" />
+                  </video>
+                  <button
+                    class="nursingVideo__sound"
+                    type="button"
+                    id="nursingVideoSound"
+                    aria-label="Unmute video"
+                    aria-pressed="false"
+                    title="Sound on/off"
+                  >
+                    <span class="nursingVideo__soundIcon nursingVideo__soundIcon--off" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                        <path d="M23 9l-6 6M17 9l6 6" />
+                      </svg>
+                    </span>
+                    <span class="nursingVideo__soundIcon nursingVideo__soundIcon--on" aria-hidden="true" hidden>
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                        <path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button class="nursingVideo__play" type="button" id="nursingVideoPlay" hidden aria-label="Play nursing video">
+                    Play
+                  </button>
+                  <span class="nursingVideo__sweep" aria-hidden="true"></span>
+                </div>
+                <svg class="nursingVideo__ecg" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0 20 H70 L85 20 L95 6 L108 34 L120 20 H200 L215 20 L225 8 L238 32 L250 20 H400" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- HOUSEKEEPING: image card -->
+            <div data-service-panel="housekeeping" hidden>
+              <div class="statusCard" data-status-card>
+                <div class="statusCard__live">
+                  <span class="statusCard__dot" aria-hidden="true"></span>
+                  <span data-status-live>Service available</span>
+                </div>
+                <strong class="statusCard__title" data-status-title>Professional</strong>
+                <span class="statusCard__sub" data-status-sub>Housekeeping</span>
+                <ul class="statusCard__list">
+                  <li data-status-a>✓ Hygienic</li>
+                  <li data-status-b>✓ Reliable</li>
+                </ul>
+              </div>
+
+              <div class="heroCard">
+                <div class="heroCard__bg" aria-hidden="true"></div>
+                <div class="heroCard__frame">
+                  <img
+                    class="heroCard__img is-loading"
+                    id="heroImage"
+                    alt="Housekeeping services"
+                    width="1280"
+                    height="960"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="heroOverlay heroOverlay--hk">
+                  <div class="heroOverlay__label">Home Freshness</div>
+                  <ul class="heroOverlay__checks">
+                    <li>✓ Hygienic</li>
+                    <li>✓ Reliable</li>
+                    <li>✓ Flexible Scheduling</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NURSING cinematic scroll story -->
+      <section class="cineStory" id="cineStory" data-service-panel="nursing" aria-label="Nursing story">
+        <div class="cineStory__pin" id="cineStoryPin">
+          <div class="cineStory__stage">
+            <div class="cineStory__videoShell" id="cineStoryShell">
+              <video
+                class="cineStory__video"
+                id="cineStoryVideo"
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="./images/nursing-video-poster.webp"
+                aria-label="Naitik Enterprises nursing care animation"
+              >
+                <source src="./videos/nursing-hero.mp4" type="video/mp4" />
+              </video>
+              <button
+                class="nursingVideo__sound nursingVideo__sound--cine"
+                type="button"
+                id="cineStorySound"
+                aria-label="Unmute video"
+                aria-pressed="false"
+                title="Sound on/off"
+              >
+                <span class="nursingVideo__soundIcon nursingVideo__soundIcon--off" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                    <path d="M23 9l-6 6M17 9l6 6" />
+                  </svg>
+                </span>
+                <span class="nursingVideo__soundIcon nursingVideo__soundIcon--on" aria-hidden="true" hidden>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                    <path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div class="cineStory__copy">
+              <p class="cineStory__step is-active" data-cine-step="0">Professional Care</p>
+              <p class="cineStory__step" data-cine-step="1">Experienced Support</p>
+              <p class="cineStory__step" data-cine-step="2">At Home</p>
+              <p class="cineStory__step" data-cine-step="3">Care That Comes Home.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section section--soft" id="services" aria-label="Services">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <h2 class="sectionHead__title" data-services-title>
+              Services built for recovery — at home
+            </h2>
+            <p class="sectionHead__subtitle" data-services-sub>
+              A premium catalog of nursing and advanced care services — designed for comfort,
+              safety, and dignity.
+            </p>
+          </div>
+
+          <div data-service-panel="nursing">
+            <div class="servicesSplit">
+              <article class="svcPane svcPane--light reveal">
+                <header class="svcPane__head">
+                  <h3 class="svcPane__title">Home Nursing Care</h3>
+                  <p class="svcPane__desc">
+                    Daily assistance and skilled nursing support for post-hospital recovery, chronic
+                    care, and home-based monitoring.
+                  </p>
+                </header>
+                <div class="svcGrid">
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🛏️</div>
+                    <h4 class="svcCard__title">Bedside Caregiver</h4>
+                    <p class="svcCard__text">Personal hygiene, mobility support, feeding & companionship.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">👩‍⚕️</div>
+                    <h4 class="svcCard__title">Home Nursing Care</h4>
+                    <p class="svcCard__text">Vitals monitoring, injections, dressing, and routine care.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🧘</div>
+                    <h4 class="svcCard__title">Physiotherapy</h4>
+                    <p class="svcCard__text">Rehab sessions to regain strength, balance, and mobility.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🏥</div>
+                    <h4 class="svcCard__title">ICU at Home</h4>
+                    <p class="svcCard__text">ICU setup and trained staff with advanced monitoring.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🤱</div>
+                    <h4 class="svcCard__title">Mother &amp; Baby Care</h4>
+                    <p class="svcCard__text">Postnatal support, newborn care, and guidance at home.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🩹</div>
+                    <h4 class="svcCard__title">Medical Equipment</h4>
+                    <p class="svcCard__text">Rentals and setup support for recovery and home comfort.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="svcPane__actions">
+                  <a class="btn btn--dark" href="#contact">Book Now</a>
+                </div>
+              </article>
+
+              <article class="svcPane svcPane--dark reveal">
+                <header class="svcPane__head">
+                  <h3 class="svcPane__title">Advanced Care Services</h3>
+                  <p class="svcPane__desc">
+                    Specialized care plans for complex needs — with hygiene protocols and
+                    coordinator-led service delivery.
+                  </p>
+                </header>
+                <div class="svcGrid">
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">👴</div>
+                    <h4 class="svcCard__title">Elder Care</h4>
+                    <p class="svcCard__text">Daily assistance, medication reminders, and fall-prevention.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🩼</div>
+                    <h4 class="svcCard__title">Post Surgery Care</h4>
+                    <p class="svcCard__text">Wound care, mobility support, and recovery monitoring.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🫁</div>
+                    <h4 class="svcCard__title">Critical Care</h4>
+                    <p class="svcCard__text">Skilled nurses for advanced clinical needs at home.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🌿</div>
+                    <h4 class="svcCard__title">Palliative Care</h4>
+                    <p class="svcCard__text">Comfort-focused support with dignity and empathy.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">🧠</div>
+                    <h4 class="svcCard__title">Dementia Care</h4>
+                    <p class="svcCard__text">Safe routines, supervision, and caregiver assistance.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                  <div class="svcCard svcCard--dark svcCard--nursing">
+                    <div class="svcCard__icon" aria-hidden="true">👨‍⚕️</div>
+                    <h4 class="svcCard__title">Home Visit Doctor</h4>
+                    <p class="svcCard__text">On-call doctor visit coordination when needed.</p>
+                    <span class="svcCard__fx" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="svcPane__actions">
+                  <a class="btn btn--accent" href="#contact">Book Now</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div data-service-panel="housekeeping" hidden>
+            <article class="svcPane svcPane--light reveal" style="margin-top: 26px">
+              <div class="svcPane__head">
+                <h3 class="svcPane__title">Service Categories</h3>
+                <p class="svcPane__desc">Professional housekeeping for different needs.</p>
+              </div>
+              <div class="svcGrid svcGrid--wide">
+                <div class="svcCard svcCard--housekeeping">
+                  <div class="svcCard__icon" aria-hidden="true">🏠</div>
+                  <h4 class="svcCard__title">Residential Housekeeping</h4>
+                  <p class="svcCard__text">Home cleaning, kitchen, bathroom, dusting, and mopping.</p>
+                  <span class="svcCard__shine" aria-hidden="true"></span>
+                </div>
+                <div class="svcCard svcCard--housekeeping">
+                  <div class="svcCard__icon" aria-hidden="true">🏢</div>
+                  <h4 class="svcCard__title">Commercial Housekeeping</h4>
+                  <p class="svcCard__text">Office cleaning, workstations, restrooms, and waste management.</p>
+                  <span class="svcCard__shine" aria-hidden="true"></span>
+                </div>
+                <div class="svcCard svcCard--housekeeping">
+                  <div class="svcCard__icon" aria-hidden="true">✨</div>
+                  <h4 class="svcCard__title">Deep Cleaning</h4>
+                  <p class="svcCard__text">Full home deep cleaning, sofa or carpet, kitchen, and bathroom.</p>
+                  <span class="svcCard__shine" aria-hidden="true"></span>
+                </div>
+                <div class="svcCard svcCard--housekeeping">
+                  <div class="svcCard__icon" aria-hidden="true">🧼</div>
+                  <h4 class="svcCard__title">Hospital/Patient Care Cleaning</h4>
+                  <p class="svcCard__text">Hygiene-focused cleaning, sanitization, and infection control.</p>
+                  <span class="svcCard__shine" aria-hidden="true"></span>
+                </div>
+                <div class="svcCard svcCard--housekeeping">
+                  <div class="svcCard__icon" aria-hidden="true">🪟</div>
+                  <h4 class="svcCard__title">Specialized Cleaning</h4>
+                  <p class="svcCard__text">Move-in, move-out, post-construction, event cleaning, glass cleaning.</p>
+                  <span class="svcCard__shine" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="svcPane__actions">
+                <a class="btn btn--dark" href="#contact">Book Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY US -->
+      <section class="section" id="why" aria-label="Why Choose Us">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <h2 class="sectionHead__title" data-why-title>Why families choose Naitik Enterprises</h2>
+            <p class="sectionHead__subtitle" data-why-sub>
+              We combine trained professionals, modern service coordination, and a patient-first
+              approach.
+            </p>
+          </div>
+
+          <div class="whyGrid" data-service-panel="nursing">
+            <div class="featureCard featureCard--pulse reveal">
+              <div class="featureCard__icon" aria-hidden="true">🛡️</div>
+              <h3 class="featureCard__title">Quality &amp; Hygiene</h3>
+              <p class="featureCard__text">Safe procedures and hygiene-first work.</p>
+            </div>
+            <div class="featureCard featureCard--pulse reveal">
+              <div class="featureCard__icon featureCard__icon--blue" aria-hidden="true">👩‍⚕️</div>
+              <h3 class="featureCard__title">Trained Professionals</h3>
+              <p class="featureCard__text">Professional staff and supervision.</p>
+            </div>
+            <div class="featureCard featureCard--pulse reveal">
+              <div class="featureCard__icon featureCard__icon--green" aria-hidden="true">⏱</div>
+              <h3 class="featureCard__title">Reliable Coordination</h3>
+              <p class="featureCard__text">Easy scheduling and communication.</p>
+            </div>
+            <div class="featureCard featureCard--pulse reveal">
+              <div class="featureCard__icon" aria-hidden="true">🏠</div>
+              <h3 class="featureCard__title">Home-Focused Care</h3>
+              <p class="featureCard__text">Support designed around the customer's needs.</p>
+            </div>
+          </div>
+
+          <div class="whyGrid" data-service-panel="housekeeping" hidden>
+            <div class="featureCard featureCard--sparkle reveal">
+              <div class="featureCard__icon" aria-hidden="true">✓</div>
+              <h3 class="featureCard__title">Trained &amp; Verified Staff</h3>
+              <p class="featureCard__text">Professionals with a strict hygiene routine.</p>
+            </div>
+            <div class="featureCard featureCard--sparkle reveal">
+              <div class="featureCard__icon featureCard__icon--blue" aria-hidden="true">⏱</div>
+              <h3 class="featureCard__title">On-time Service</h3>
+              <p class="featureCard__text">Planned schedules and dependable arrivals.</p>
+            </div>
+            <div class="featureCard featureCard--sparkle reveal">
+              <div class="featureCard__icon featureCard__icon--green" aria-hidden="true">🧴</div>
+              <h3 class="featureCard__title">Safe Cleaning Products</h3>
+              <p class="featureCard__text">Careful product usage and safe handling.</p>
+            </div>
+            <div class="featureCard featureCard--sparkle reveal">
+              <div class="featureCard__icon" aria-hidden="true">📅</div>
+              <h3 class="featureCard__title">Flexible Scheduling</h3>
+              <p class="featureCard__text">Choose a suitable date and time slot.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY -->
+      <section class="section section--soft" id="journey" aria-label="Service journey">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <h2 class="sectionHead__title" data-journey-title>Care Journey</h2>
+            <p class="sectionHead__subtitle" data-journey-sub>
+              A clear path from request to ongoing support.
+            </p>
+          </div>
+
+          <ol class="journey" data-service-panel="nursing">
+            <li class="journey__step reveal"><span>Request</span></li>
+            <li class="journey__step reveal"><span>Consultation</span></li>
+            <li class="journey__step reveal"><span>Professional Assignment</span></li>
+            <li class="journey__step reveal"><span>Home Care</span></li>
+            <li class="journey__step reveal"><span>Ongoing Support</span></li>
+            <li class="journey__finale reveal" aria-hidden="true">Care Connected</li>
+          </ol>
+
+          <ol class="journey journey--clean" data-service-panel="housekeeping" hidden>
+            <li class="journey__step reveal"><span>Book</span></li>
+            <li class="journey__step reveal"><span>Schedule</span></li>
+            <li class="journey__step reveal"><span>Team Assigned</span></li>
+            <li class="journey__step reveal"><span>Service</span></li>
+            <li class="journey__step reveal"><span>Clean Home</span></li>
+            <li class="journey__finale reveal" aria-hidden="true">Clean. Fresh. Done.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about" aria-label="About Us">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <h2 class="sectionHead__title">About Naitik Enterprises</h2>
+            <p class="sectionHead__subtitle" data-about-sub>
+              Trusted home nursing with compassionate care and responsible service coordination.
+            </p>
+          </div>
+
+          <div class="aboutGrid">
+            <div class="aboutPortrait reveal reveal--image">
+              <div class="aboutPortrait__frame">
+                <img
+                  class="aboutPortrait__img is-loading"
+                  id="founderImage"
+                  alt="Founder Pramila Gehlot"
+                  width="640"
+                  height="540"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="aboutPortrait__glass">
+                <h3 class="founderName">Pramila Gehlot</h3>
+                <p class="aboutPortrait__role">Founder</p>
+              </div>
+            </div>
+
+            <div class="aboutCopy reveal">
+              <p class="twoCol__text" data-about-a>
+                Pramila Gehlot is the founder of <strong>Naitik Enterprises</strong>. Her core focus
+                is on patient-first care, maintaining high standards of hygiene, and ensuring timely
+                coordination. Her vision is to provide compassionate and reliable support, so that
+                families feel confident and at ease throughout the recovery journey of their loved
+                ones.
+              </p>
+              <p class="twoCol__text" data-about-b>
+                From bedside nursing and elder care to physiotherapy and ICU-level support at home —
+                trained caregivers and clear service planning help deliver consistent care.
+              </p>
+              <div class="aboutHighlights">
+                <div class="featureCard">
+                  <div class="featureCard__icon" aria-hidden="true">🛡️</div>
+                  <h3 class="featureCard__title">Quality &amp; Hygiene</h3>
+                  <p class="featureCard__text">Trained staff, safe procedures, and careful supervision.</p>
+                </div>
+                <div class="featureCard">
+                  <div class="featureCard__icon featureCard__icon--blue" aria-hidden="true">🤝</div>
+                  <h3 class="featureCard__title">Family Support</h3>
+                  <p class="featureCard__text">Fast coordination and easy WhatsApp booking.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAREER (nursing only) -->
+      <section class="section section--soft" id="career" data-service-panel="nursing" aria-label="Career">
+        <div class="container">
+          <div class="sectionHead reveal">
+            <h2 class="sectionHead__title">Careers</h2>
+            <p class="sectionHead__subtitle">
+              Join our team of nursing professionals. Apply below — we’ll contact you after
+              verification.
+            </p>
+          </div>
+
+          <div class="careerGrid">
+            <div class="careerPitch reveal">
+              <div class="careerPitch__card">
+                <h3 class="careerPitch__title">Work with a patient-first team</h3>
+                <p class="careerPitch__text">
+                  We support our nurses with clear schedules, coordinator assistance, and a culture
+                  of respect.
+                </p>
+                <ul class="ticks">
+                  <li>Flexible shifts</li>
+                  <li>Fair compensation</li>
+                  <li>Respectful working environment</li>
+                  <li>Training &amp; guidance</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="careerFormWrap reveal">
+              <form class="formCard" id="careerForm" novalidate>
+                <div class="formCard__head">
+                  <h3 class="formCard__title">Nurse Application</h3>
+                  <p class="formCard__sub">Fill all fields and submit your application.</p>
+                </div>
+                <div class="formGrid">
+                  <label class="field">
+                    <span class="field__label">Name</span>
+                    <input class="field__input" name="name" type="text" required />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Phone</span>
+                    <input class="field__input" name="phone" type="tel" inputmode="tel" required />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Qualification</span>
+                    <input class="field__input" name="qualification" type="text" required />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Experience (years)</span>
+                    <input class="field__input" name="experience" type="number" min="0" step="1" required />
+                  </label>
+                  <label class="field field--full">
+                    <span class="field__label">Address</span>
+                    <input class="field__input" name="address" type="text" required />
+                  </label>
+                </div>
+                <button class="btn btn--dark btn--full" type="submit">Submit Application</button>
+                <div class="formAlert" id="careerAlert" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section contactSection" id="contact" aria-label="Booking">
+        <div class="container">
+          <div class="contactHero reveal reveal--cinematic">
+            <h2 class="contactHero__title">Need reliable support?</h2>
+            <p class="contactHero__sub" data-contact-sub>
+              Share your details and required service — we’ll confirm availability and schedule via
+              WhatsApp.
+            </p>
+            <a class="btn btn--primary btn--lg" href="#bookingForm" data-contact-cta
+              >Book Nursing Support →</a
+            >
+          </div>
+
+          <div class="twoCol" style="margin-top: 28px">
+            <div class="twoCol__left reveal">
+              <div class="contactStrip">
+                <div class="contactStrip__item">
+                  <div class="contactStrip__icon" aria-hidden="true">📞</div>
+                  <div>
+                    <div class="contactStrip__label">Call</div>
+                    <div class="contactStrip__value" data-phone>+91 70001 50604</div>
+                  </div>
+                </div>
+                <div class="contactStrip__item">
+                  <div class="contactStrip__icon contactStrip__icon--blue" aria-hidden="true">💬</div>
+                  <div>
+                    <div class="contactStrip__label">WhatsApp</div>
+                    <div class="contactStrip__value">Instant booking</div>
+                  </div>
+                </div>
+                <div class="contactStrip__item">
+                  <div class="contactStrip__icon" aria-hidden="true">✉️</div>
+                  <div>
+                    <div class="contactStrip__label">Email</div>
+                    <div class="contactStrip__value">info@naitikenterprises.com</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mapWrap" style="margin-top: 14px">
+                <div class="mapCard" aria-label="Google Map">
+                  <iframe
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=22.7072337,75.9017387&output=embed"
+                    title="Google Maps location"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="twoCol__right reveal">
+              <form class="formCard" id="bookingForm">
+                <div class="formCard__head">
+                  <h3 class="formCard__title">Booking Form</h3>
+                  <p class="formCard__sub">We’ll prepare options based on your request.</p>
+                </div>
+
+                <div class="formGrid">
+                  <label class="field">
+                    <span class="field__label">Full Name</span>
+                    <input class="field__input" name="name" type="text" placeholder="Your name" required />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Phone Number</span>
+                    <input
+                      class="field__input"
+                      name="phone"
+                      type="tel"
+                      inputmode="tel"
+                      placeholder="e.g. 98765 43210"
+                      required
+                    />
+                  </label>
+                  <label class="field field--full">
+                    <span class="field__label">Select Service</span>
+                    <select class="field__input" name="service" id="bookingService" required>
+                      <option value="" selected disabled>Choose a service</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Preferred Date</span>
+                    <input class="field__input" name="date" type="date" required />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Preferred Time</span>
+                    <input class="field__input" name="time" type="time" required />
+                  </label>
+                </div>
+
+                <div class="termsAgree">
+                  <label class="termsAgree__label">
+                    <input
+                      class="termsAgree__check"
+                      type="checkbox"
+                      id="termsAgreeCheck"
+                      name="termsAgree"
+                      required
+                    />
+                    <span class="termsAgree__box" aria-hidden="true"></span>
+                    <span class="termsAgree__text">
+                      I agree to the
+                      <button type="button" class="termsAgree__link" id="openTermsModal">
+                        Terms &amp; Policy
+                      </button>
+                    </span>
+                  </label>
+                  <p class="termsAgree__error" id="termsAgreeError" role="alert" hidden>
+                    Please tick the box to agree to the Terms &amp; Policy before sending.
+                  </p>
+                </div>
+
+                <button
+                  class="btn btn--primary btn--full"
+                  type="submit"
+                  id="bookingSubmit"
+                  disabled
+                  aria-disabled="true"
+                >
+                  Send on WhatsApp
+                </button>
+                <p class="formHint">
+                  By submitting, you’ll be redirected to WhatsApp with your details pre-filled.
+                </p>
+              </form>
             </div>
           </div>
         </div>
@@ -189,34 +939,568 @@
       <div class="container footer__grid">
         <div class="footer__brand">
           <div class="brand brand--footer">
-            <span class="brand__mark" aria-hidden="true">NE</span>
-            <span class="brand__name">Naitik Enterprises</span>
+            <img
+              class="brand__logo brand__logo--footer"
+              src="./images/brand/logo-full.webp"
+              width="240"
+              height="160"
+              alt="Naitik Enterprises"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <p class="footer__text">
-            Premium home services focused on cleanliness, care, and reliable coordination.
+          <p class="footer__text" data-footer-text>
+            Premium home nursing and advanced care services. Trusted support for recovery, elder
+            care, and critical care at home.
           </p>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__title">Choose</h4>
-          <a class="footer__link" href="nursing.html">Nursing</a>
-          <a class="footer__link" href="housekeeping.html">Housekeeping</a>
+          <h4 class="footer__title">Quick Links</h4>
+          <a class="footer__link" href="#services">Services</a>
+          <a class="footer__link" href="#why">Why Us</a>
+          <a class="footer__link" href="#journey">Process</a>
+          <a class="footer__link" href="#about">About</a>
+          <a class="footer__link" href="#contact">Contact</a>
         </div>
 
         <div class="footer__col">
           <h4 class="footer__title">Contact</h4>
           <div class="footer__meta">
-            <div><strong>Phone:</strong> +91 70001 50604</div>
+            <div><strong>Phone:</strong> <span data-phone>+91 70001 50604</span></div>
             <div><strong>Email:</strong> info@naitikenterprises.com</div>
           </div>
         </div>
       </div>
 
-        <div class="container footer__bottom">
-          <div>Copyright <span id="year"></span> Naitik Enterprises. All rights reserved.</div>
+      <div class="container footer__bottom">
+        <div>© <span id="year"></span> Naitik Enterprises. All rights reserved.</div>
         <a class="footer__top" href="#top">Back to top</a>
       </div>
     </footer>
+
+    <button class="fab" type="button" id="fabWhatsapp" aria-label="Chat on WhatsApp">
+      <span class="fab__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path
+            d="M12 2a10 10 0 00-8.66 15l-1.34 5 5.1-1.33A10 10 0 1012 2zm5.2 14.3c-.2.6-1.2 1.1-1.7 1.1-.4 0-.9.2-3-.8-2.5-1.2-4.1-4-4.2-4.2-.1-.2-1-1.3-1-2.5s.6-1.8.9-2c.2-.2.5-.3.8-.3h.6c.2 0 .4 0 .6.5.2.6.7 2 .8 2.1.1.2.1.3 0 .5l-.3.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.4.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.5.3.1.2.1.8-.1 1.4z"
+          />
+        </svg>
+      </span>
+      <span class="fab__label">WhatsApp</span>
+      <span class="fab__bubble" aria-hidden="true">Let's talk →</span>
+    </button>
+
+    <!-- Terms & Policy modal -->
+    <div
+      class="termsModal"
+      id="termsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="termsModalTitle"
+      hidden
+    >
+      <div class="termsModal__backdrop" data-terms-close tabindex="-1"></div>
+      <div class="termsModal__panel">
+        <div class="termsModal__head">
+          <div>
+            <p class="termsModal__eyebrow">Naitik Enterprises</p>
+            <h2 class="termsModal__title" id="termsModalTitle">
+              Nursing &amp; Housekeeping Service Policy &amp; Terms &amp; Conditions
+            </h2>
+            <p class="termsModal__updated">Last Updated: 01/03/2026</p>
+          </div>
+          <button type="button" class="termsModal__close" data-terms-close aria-label="Close terms">
+            ✕
+          </button>
+        </div>
+        <div class="termsModal__body">
+          <p>
+            Naitik Enterprises provides Nursing and Housekeeping services at customer locations. By
+            booking or using our services, the customer agrees to the following Service Policy and
+            Terms &amp; Conditions.
+          </p>
+
+          <h3>1. General Terms</h3>
+          <ol>
+            <li>
+              The services provided by Naitik Enterprises will be based on the service selected by
+              the Customer and the scope agreed at the time of booking.
+            </li>
+            <li>
+              Service availability, timings, staff availability and service duration may vary
+              depending on location, staff availability and the requirements of the Customer.
+            </li>
+            <li>
+              The Customer must provide accurate information regarding the service requirements,
+              location, patient condition (where applicable), working environment and any relevant
+              instructions.
+            </li>
+            <li>
+              Any special requirement outside the agreed scope of service may be subject to
+              additional charges and availability.
+            </li>
+            <li>
+              The Company reserves the right to refuse or discontinue a service where the working
+              environment is unsafe, abusive, illegal, medically inappropriate for the assigned
+              staff, or materially different from the information provided at booking.
+            </li>
+          </ol>
+
+          <h3>2. Customer's Household Items &amp; Personal Belongings</h3>
+          <p>
+            The Customer is responsible for securing valuable, fragile and personal belongings
+            before the commencement of service.
+          </p>
+          <p>These may include, but are not limited to:</p>
+          <ul>
+            <li>Cash</li>
+            <li>Jewellery</li>
+            <li>Mobile phones</li>
+            <li>Laptops and electronic devices</li>
+            <li>Important documents</li>
+            <li>Keys</li>
+            <li>Collectibles</li>
+            <li>Expensive household items</li>
+            <li>Medicines</li>
+            <li>Personal valuables</li>
+          </ul>
+          <p>
+            Naitik Enterprises does not accept responsibility for loss, disappearance or damage to
+            personal belongings where such loss or damage is not caused by the Company's proven
+            negligence, wilful misconduct or other liability imposed by applicable law.
+          </p>
+          <p>
+            Customers are strongly advised to keep valuables and sensitive documents in a secure
+            location before the service begins.
+          </p>
+
+          <h3>3. Housekeeping Service — Property &amp; Damage Policy</h3>
+          <p>
+            Our housekeeping staff are expected to exercise reasonable care while performing the
+            agreed services.
+          </p>
+          <p>However, the Company will not ordinarily be responsible for:</p>
+          <ul>
+            <li>Pre-existing damage</li>
+            <li>Normal wear and tear</li>
+            <li>Damage caused by defective or fragile items</li>
+            <li>Damage caused by improper installation or poor maintenance of an item</li>
+            <li>Damage caused by hidden defects</li>
+            <li>Damage caused by materials supplied by the Customer</li>
+            <li>Damage caused by unsafe electrical connections</li>
+            <li>Damage resulting from instructions given by the Customer</li>
+            <li>
+              Damage caused by moving extremely heavy or unsafe objects where such movement was not
+              part of the agreed service
+            </li>
+            <li>Damage arising from work outside the agreed scope</li>
+          </ul>
+          <p>
+            The Customer must inform the Company before service begins about any fragile, damaged,
+            high-value or specially maintained item.
+          </p>
+          <p>
+            Where the Company or its staff causes damage through proven negligence or wilful
+            misconduct, the matter will be reviewed and handled in accordance with applicable law
+            and the Company's damage-resolution procedure.
+          </p>
+
+          <h3>4. Housekeeping — Customer-Provided Materials</h3>
+          <p>Where the Customer provides:</p>
+          <ul>
+            <li>Cleaning chemicals</li>
+            <li>Equipment</li>
+            <li>Electrical appliances</li>
+            <li>Tools</li>
+            <li>Cleaning solutions</li>
+            <li>Special cleaning products</li>
+          </ul>
+          <p>
+            the Customer is responsible for informing the staff about their correct usage and any
+            known risks.
+          </p>
+          <p>
+            The Company will not be responsible for damage caused solely by defective, unsuitable,
+            expired, incorrectly labelled or improperly stored products supplied by the Customer,
+            except where liability arises from the Company's own negligence or applicable law.
+          </p>
+
+          <h3>5. Hazardous Materials &amp; Unsafe Conditions</h3>
+          <p>Housekeeping staff must not be required to handle dangerous or illegal substances.</p>
+          <p>This may include:</p>
+          <ul>
+            <li>Highly toxic chemicals</li>
+            <li>Biohazardous materials</li>
+            <li>Unknown substances</li>
+            <li>Explosive materials</li>
+            <li>Illegal substances</li>
+            <li>Unsafe electrical systems</li>
+            <li>Dangerous structural conditions</li>
+          </ul>
+          <p>
+            If the working environment presents a serious safety risk, the staff member may stop the
+            relevant task and notify the Company/Customer.
+          </p>
+
+          <h3>6. Keys, Access &amp; Security</h3>
+          <p>
+            If the Customer provides keys, access cards, passwords or other access mechanisms:
+          </p>
+          <ol>
+            <li>The Customer should provide only the access necessary for the agreed service.</li>
+            <li>The Customer should not provide unnecessary personal or financial information.</li>
+            <li>
+              Keys/access devices should be handed over and received through an agreed process
+              wherever possible.
+            </li>
+            <li>
+              The Customer should immediately report any suspected loss, misuse or unauthorized
+              access.
+            </li>
+          </ol>
+          <p>
+            Naitik Enterprises does not encourage customers to share banking passwords, OTPs, ATM
+            PINs or other financial authentication information with staff.
+          </p>
+
+          <h3>7. Nursing Service — Scope of Care</h3>
+          <p>
+            Nursing services will be provided according to the service booked and the
+            qualifications/scope of the assigned professional.
+          </p>
+          <p>The Customer must provide accurate information regarding:</p>
+          <ul>
+            <li>Patient condition</li>
+            <li>Existing medical history</li>
+            <li>Allergies</li>
+            <li>Current medicines</li>
+            <li>Doctor's instructions</li>
+            <li>Mobility limitations</li>
+            <li>Known medical risks</li>
+            <li>Special care requirements</li>
+          </ul>
+          <p>
+            The Company and assigned staff must not be expected to perform services outside their
+            professional qualifications, legal permissions or agreed scope.
+          </p>
+
+          <h3>8. Medical Decisions &amp; Emergencies</h3>
+          <p>
+            Naitik Enterprises provides support services and does not replace a hospital, emergency
+            department or treating doctor.
+          </p>
+          <p>
+            In case of a medical emergency, the Customer/attendant should immediately contact the
+            appropriate emergency medical service and/or treating doctor.
+          </p>
+          <p>
+            Where reasonably necessary and permitted, our staff may assist in contacting the
+            Customer's family member, doctor or emergency service.
+          </p>
+          <p>The Company does not guarantee a particular medical outcome.</p>
+
+          <h3>9. Medicines &amp; Medical Instructions</h3>
+          <p>
+            Where medication-related assistance is part of the agreed nursing service, staff shall
+            act according to applicable law, professional scope and instructions provided by the
+            treating medical professional/customer.
+          </p>
+          <p>The Customer should provide properly labelled medicines and clear instructions.</p>
+          <p>
+            Nursing staff must not be expected to independently prescribe, change, discontinue or
+            substitute medicines unless legally authorized and professionally permitted to do so.
+          </p>
+          <p>Any change in treatment should be directed by the treating medical professional.</p>
+
+          <h3>10. Patient Consent &amp; Information</h3>
+          <p>The Customer/patient should provide appropriate consent for the services being provided.</p>
+          <p>
+            Where the patient is unable to provide consent, the appropriate authorized family
+            member/representative should provide the necessary information and authorization as
+            applicable.
+          </p>
+          <p>
+            The Customer must not knowingly provide false or materially incomplete information about
+            a patient's condition where such information could affect safe service delivery.
+          </p>
+
+          <h3>11. Privacy &amp; Confidentiality</h3>
+          <p>
+            Naitik Enterprises and its personnel should treat customer and patient information as
+            confidential and use it only for legitimate service-related purposes, subject to
+            applicable law.
+          </p>
+          <p>Information may include:</p>
+          <ul>
+            <li>Name</li>
+            <li>Phone number</li>
+            <li>Address</li>
+            <li>Patient information</li>
+            <li>Service requirements</li>
+            <li>Appointment details</li>
+            <li>Emergency contact details</li>
+          </ul>
+          <p>We will take reasonable measures to protect personal information.</p>
+          <p>
+            Where personal data is collected or processed through the website, booking system or
+            other digital channels, the Company should provide appropriate privacy notices and obtain
+            consent where required by applicable law. India's Digital Personal Data Protection Act,
+            2023 includes requirements around clear, informed and specific consent for personal-data
+            processing where consent is the applicable basis.
+          </p>
+
+          <h3>12. Staff Conduct &amp; Customer Conduct</h3>
+          <p>
+            Both Customers and Company personnel are expected to maintain respectful and professional
+            conduct.
+          </p>
+          <p>The Company does not tolerate:</p>
+          <ul>
+            <li>Physical abuse</li>
+            <li>Verbal abuse</li>
+            <li>Threats</li>
+            <li>Harassment</li>
+            <li>Sexual harassment</li>
+            <li>Discrimination</li>
+            <li>Intimidation</li>
+            <li>Unsafe working conditions</li>
+            <li>Illegal activities</li>
+          </ul>
+          <p>
+            If a staff member faces an unsafe or abusive environment, the Company may suspend or
+            terminate the service after appropriate communication, subject to applicable law.
+          </p>
+          <p>
+            Similarly, Customers may report inappropriate conduct by any Company representative for
+            investigation.
+          </p>
+
+          <h3>13. Personal Safety &amp; Working Environment</h3>
+          <p>
+            The Customer is responsible for informing the Company about known hazards at the service
+            location.
+          </p>
+          <p>Examples include:</p>
+          <ul>
+            <li>Aggressive animals</li>
+            <li>Unsafe electrical wiring</li>
+            <li>Construction hazards</li>
+            <li>Slippery surfaces</li>
+            <li>Infectious risks</li>
+            <li>Dangerous individuals</li>
+            <li>Structural instability</li>
+            <li>Other known safety hazards</li>
+          </ul>
+          <p>
+            The Company may request reasonable safety measures before commencing or continuing
+            service.
+          </p>
+
+          <h3>14. Service Timings</h3>
+          <p>Service timings are agreed at the time of booking.</p>
+          <p>Delays may occur due to:</p>
+          <ul>
+            <li>Traffic</li>
+            <li>Weather</li>
+            <li>Emergencies</li>
+            <li>Staff availability</li>
+            <li>Unexpected circumstances</li>
+            <li>Operational issues</li>
+          </ul>
+          <p>
+            The Company will make reasonable efforts to communicate significant delays and arrange
+            alternatives where possible.
+          </p>
+
+          <h3>15. Cancellation &amp; Rescheduling</h3>
+          <p>Customers may request cancellation or rescheduling before the scheduled service.</p>
+          <p>
+            Any applicable cancellation, rescheduling or refund charges will be communicated at the
+            time of booking or through the applicable booking policy.
+          </p>
+          <p>
+            Repeated cancellations, no-shows or last-minute changes may result in additional charges
+            or restrictions on future bookings, subject to applicable law.
+          </p>
+
+          <h3>16. Payment</h3>
+          <p>
+            The Customer agrees to pay the applicable service charges communicated at the time of
+            booking.
+          </p>
+          <p>Additional charges may apply where:</p>
+          <ul>
+            <li>The service duration is extended with Customer approval.</li>
+            <li>Additional work is requested.</li>
+            <li>The Customer requests work outside the original scope.</li>
+            <li>Additional materials are required and agreed upon.</li>
+          </ul>
+          <p>
+            The Customer should obtain confirmation of any additional charges before such additional
+            services are performed wherever reasonably possible.
+          </p>
+
+          <h3>17. Refund Policy</h3>
+          <p>
+            Refunds, where applicable, will be processed according to the Company's
+            refund/cancellation policy and applicable law.
+          </p>
+          <p>
+            Where a service could not be provided due to reasons attributable to the Company, the
+            Company will review the matter and provide an appropriate resolution in accordance with
+            the applicable terms and law.
+          </p>
+          <p>
+            Nothing in this policy is intended to exclude any consumer right that cannot legally be
+            excluded.
+          </p>
+
+          <h3>18. Damage / Incident Reporting</h3>
+          <p>Any alleged:</p>
+          <ul>
+            <li>Property damage</li>
+            <li>Loss</li>
+            <li>Missing item</li>
+            <li>Staff misconduct</li>
+            <li>Service issue</li>
+            <li>Safety incident</li>
+          </ul>
+          <p>should be reported to Naitik Enterprises as soon as reasonably possible.</p>
+          <p>The Company may request:</p>
+          <ul>
+            <li>Photographs/videos</li>
+            <li>Service date and time</li>
+            <li>Details of the incident</li>
+            <li>Relevant invoices or proof of value</li>
+            <li>Statements from persons present</li>
+          </ul>
+          <p>
+            The Company may investigate the incident before determining an appropriate resolution.
+          </p>
+
+          <h3>19. Limitation of Liability</h3>
+          <p>
+            To the extent permitted by applicable law, Naitik Enterprises shall not be responsible
+            for indirect, incidental or consequential losses arising solely from circumstances
+            outside the Company's reasonable control.
+          </p>
+          <p>
+            However, nothing in these Terms shall be interpreted as excluding or limiting liability
+            that cannot legally be excluded or limited, including liability arising from the
+            Company's proven negligence, wilful misconduct or other liability imposed by applicable
+            law.
+          </p>
+          <p>The Company does not exclude statutory consumer rights.</p>
+          <p>
+            The Consumer Protection Act, 2019 recognizes liability where a service is deficient,
+            inadequate, negligent or fails to conform to applicable contractual terms.
+          </p>
+
+          <h3>20. Force Majeure</h3>
+          <p>
+            The Company will not be considered in breach of its obligations where performance is
+            prevented or materially affected by circumstances beyond its reasonable control,
+            including:
+          </p>
+          <ul>
+            <li>Natural disasters</li>
+            <li>Floods</li>
+            <li>Fire</li>
+            <li>Epidemics/pandemics</li>
+            <li>Government restrictions</li>
+            <li>Civil disturbances</li>
+            <li>Severe weather</li>
+            <li>Transportation disruptions</li>
+            <li>Major infrastructure failures</li>
+            <li>Other circumstances beyond reasonable control</li>
+          </ul>
+          <p>
+            The Company will make reasonable efforts to resume or reschedule services where possible.
+          </p>
+
+          <h3>21. Service Quality &amp; Consumer Rights</h3>
+          <p>
+            Naitik Enterprises aims to provide services with reasonable care, professionalism and
+            according to the agreed scope.
+          </p>
+          <p>
+            Customers may raise complaints regarding service quality, conduct, billing or other
+            concerns.
+          </p>
+          <p>
+            Nothing in this policy is intended to remove or restrict rights available to a Customer
+            under applicable consumer-protection laws.
+          </p>
+
+          <h3>22. Complaints &amp; Grievances</h3>
+          <p>
+            For complaints or service-related concerns, customers should contact Naitik Enterprises
+            through the official contact details provided on the website.
+          </p>
+          <p>The complaint should include:</p>
+          <ul>
+            <li>Customer name</li>
+            <li>Contact number</li>
+            <li>Service type</li>
+            <li>Date of service</li>
+            <li>Location</li>
+            <li>Description of the issue</li>
+            <li>Supporting evidence, if available</li>
+          </ul>
+          <p>
+            The Company will review complaints and attempt to resolve genuine issues fairly and
+            within a reasonable period.
+          </p>
+
+          <h3>23. Changes to Services or Policy</h3>
+          <p>
+            Naitik Enterprises may update service offerings, pricing, procedures or these Terms from
+            time to time.
+          </p>
+          <p>
+            The latest version published on the official website will apply to future bookings,
+            subject to applicable law and any contractual terms already agreed with the Customer.
+          </p>
+
+          <h3>24. Governing Law</h3>
+          <p>These Terms shall be governed by the applicable laws of India.</p>
+          <p>
+            Any dispute shall be subject to the jurisdiction of the appropriate courts/consumer
+            forums having jurisdiction under applicable law.
+          </p>
+          <p>
+            Nothing in this clause is intended to take away any statutory jurisdiction or consumer
+            remedy available under applicable law.
+          </p>
+
+          <h3>25. Customer Acknowledgement</h3>
+          <p>By booking or using Naitik Enterprises services, the Customer acknowledges that:</p>
+          <ul>
+            <li>They have provided accurate information relevant to the service.</li>
+            <li>They understand the agreed scope of service.</li>
+            <li>They will secure valuables and fragile belongings.</li>
+            <li>They will disclose relevant safety or medical information where applicable.</li>
+            <li>They will provide safe access to the service location.</li>
+            <li>They will treat Company personnel respectfully.</li>
+            <li>
+              They understand that Naitik Enterprises does not replace a hospital or treating doctor
+              for emergency medical care.
+            </li>
+            <li>
+              They understand that the Company cannot contractually exclude liabilities that cannot
+              legally be excluded.
+            </li>
+          </ul>
+        </div>
+        <div class="termsModal__foot">
+          <button type="button" class="btn btn--primary" id="termsAcceptBtn">
+            I Agree
+          </button>
+          <button type="button" class="btn btn--ghost" data-terms-close>Close</button>
+        </div>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
   </body>

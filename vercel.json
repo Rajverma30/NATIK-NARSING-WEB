@@ -1,0 +1,51 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/nursing.html",
+      "destination": "/nursing",
+      "permanent": true
+    },
+    {
+      "source": "/housekeeping.html",
+      "destination": "/housekeeping",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/nursing",
+      "destination": "/index.html?service=nursing&welcome=0"
+    },
+    {
+      "source": "/housekeeping",
+      "destination": "/index.html?service=housekeeping&welcome=0"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.(ico|png)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ]
+}
