@@ -1269,8 +1269,9 @@ select.field__input{
   inset:0;
   z-index:3900;
   display:grid;
-  place-items:center;
-  padding:16px;
+  align-items:start;
+  justify-items:center;
+  padding:54px 16px 16px;
 }
 .bookingModal[hidden]{display:none !important}
 .bookingModal__backdrop{
@@ -1279,13 +1280,54 @@ select.field__input{
   background:rgba(3, 14, 28, .6);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
+}
+.bookingModal__layout{
   display:grid;
-  place-items:center;
-  text-align:center;
-  padding:20px;
+  grid-template-columns:minmax(260px, .88fr) minmax(0, 1.12fr);
+  align-items:stretch;
+}
+.bookingModal__brand{
+  position:relative;
+  padding:28px 24px;
+  border-radius:24px 0 0 24px;
+  background:
+    radial-gradient(circle at 22% 18%, color-mix(in srgb, var(--secondary) 44%, transparent), transparent 42%),
+    radial-gradient(circle at 82% 82%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 40%),
+    linear-gradient(160deg, color-mix(in srgb, var(--primary) 92%, #020617), color-mix(in srgb, var(--primary) 74%, #041018));
+  color:#fff;
+  overflow:hidden;
+}
+.bookingModal__brand::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.12);
+  pointer-events:none;
+}
+.bookingModal__logoShell{
+  position:relative;
+  display:inline-flex;
+  padding:12px 14px;
+  border-radius:22px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--secondary) 16%, transparent),
+    0 0 26px color-mix(in srgb, var(--secondary) 24%, transparent),
+    0 0 52px color-mix(in srgb, var(--secondary) 22%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.bookingModal__logo{
+  width:min(220px, 100%);
+  height:auto;
+  filter:
+    drop-shadow(0 0 8px color-mix(in srgb, var(--secondary) 35%, transparent))
+    drop-shadow(0 0 24px color-mix(in srgb, var(--secondary) 24%, transparent));
 }
 .bookingModal__trust{
-  max-width:780px;
+  margin-top:26px;
   color:rgba(255,255,255,.96);
   text-shadow:0 10px 26px rgba(2,18,35,.45);
 }
@@ -1305,21 +1347,46 @@ select.field__input{
   letter-spacing:-.02em;
 }
 .bookingModal__trustSub{
-  margin:10px auto 0;
-  max-width:60ch;
+  margin:10px 0 0;
   color:rgba(255,255,255,.86);
+}
+.bookingModal__points{
+  margin:18px 0 0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:10px;
+}
+.bookingModal__points li{
+  position:relative;
+  padding-left:20px;
+  color:rgba(255,255,255,.92);
+}
+.bookingModal__points li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.55em;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 .bookingModal__panel{
   position:relative;
-  width:min(640px, 100%);
+  width:min(1040px, 100%);
   border-radius:24px;
   box-shadow:0 36px 90px rgba(2,18,35,.3);
   z-index:1;
+  overflow:hidden;
 }
 .bookingModal__form{
   background:rgba(255,255,255,.97);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
+  border-radius:0 24px 24px 0;
+  height:100%;
 }
 .bookingModal__close{
   position:absolute;
@@ -1860,7 +1927,25 @@ select.field__input{
   .formGrid{grid-template-columns:1fr}
   .welcome__panel{padding:22px 16px 16px}
   .statusCard{display:none}
-  .bookingModal__trust{display:none}
+  .bookingModal{padding-top:18px}
+}
+
+@media (max-width: 900px){
+  .bookingModal__layout{grid-template-columns:1fr}
+  .bookingModal__brand{
+    border-radius:24px 24px 0 0;
+    padding:22px 20px;
+  }
+  .bookingModal__form{
+    border-radius:0 0 24px 24px;
+  }
+}
+
+@media (max-width: 640px){
+  .bookingModal__brand{padding:18px 16px}
+  .bookingModal__logo{width:min(180px, 100%)}
+  .bookingModal__trustTitle{font-size:1.3rem}
+  .bookingModal__points{gap:8px}
 }
 
 @media (hover:none){

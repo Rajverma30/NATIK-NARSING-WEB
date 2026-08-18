@@ -1449,90 +1449,111 @@
       aria-labelledby="bookingModalTitle"
       hidden
     >
-      <div class="bookingModal__backdrop" data-booking-close tabindex="-1">
-        <div class="bookingModal__trust" aria-hidden="true">
-          <p class="bookingModal__trustLine">Trusted care for every home.</p>
-          <h3 class="bookingModal__trustTitle">Verified staff. Clear coordination. Compassion first.</h3>
-          <p class="bookingModal__trustSub">Thousands of families choose reliable support with Naitik Enterprises.</p>
-        </div>
-      </div>
+      <div class="bookingModal__backdrop" data-booking-close tabindex="-1"></div>
       <div class="bookingModal__panel">
         <button type="button" class="bookingModal__close" data-booking-close aria-label="Close booking form">
           ✕
         </button>
-        <form class="formCard bookingModal__form" id="bookingFormModal">
-          <div class="formCard__head">
-            <h3 class="formCard__title" id="bookingModalTitle">Booking Form</h3>
-            <p class="formCard__sub">We’ll prepare options based on your request.</p>
-          </div>
-
-          <div class="formGrid">
-            <label class="field">
-              <span class="field__label">Full Name</span>
-              <input class="field__input" name="name" type="text" placeholder="Your name" required />
-            </label>
-            <label class="field">
-              <span class="field__label">Phone Number</span>
-              <input
-                class="field__input"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                placeholder="e.g. 98765 43210"
-                required
+        <div class="bookingModal__layout">
+          <aside class="bookingModal__brand" aria-hidden="true">
+            <div class="bookingModal__logoShell">
+              <img
+                class="bookingModal__logo"
+                src="./images/brand/logo-full.webp"
+                width="240"
+                height="160"
+                alt="Naitik Enterprises"
+                decoding="async"
               />
-            </label>
-            <label class="field field--full">
-              <span class="field__label">Select Service</span>
-              <select class="field__input" name="service" id="bookingServiceModal" required>
-                <option value="" selected disabled>Choose a service</option>
-              </select>
-            </label>
-            <label class="field">
-              <span class="field__label">Preferred Date</span>
-              <input class="field__input" name="date" type="date" required />
-            </label>
-            <label class="field">
-              <span class="field__label">Preferred Time</span>
-              <input class="field__input" name="time" type="time" required />
-            </label>
-          </div>
+            </div>
+            <div class="bookingModal__trust">
+              <p class="bookingModal__trustLine">Trusted care for every home.</p>
+              <h3 class="bookingModal__trustTitle">Verified staff. Clear coordination. Compassion first.</h3>
+              <p class="bookingModal__trustSub">
+                Fast response, professional support, and a team families can trust in important moments.
+              </p>
+              <ul class="bookingModal__points">
+                <li>Trained and reliable service staff</li>
+                <li>Simple booking with quick WhatsApp confirmation</li>
+                <li>Care focused on comfort, safety, and dignity</li>
+              </ul>
+            </div>
+          </aside>
 
-          <div class="termsAgree">
-            <label class="termsAgree__label">
-              <input
-                class="termsAgree__check"
-                type="checkbox"
-                id="termsAgreeCheckModal"
-                name="termsAgree"
-                required
-              />
-              <span class="termsAgree__box" aria-hidden="true"></span>
-              <span class="termsAgree__text">
-                I agree to the
-                <button type="button" class="termsAgree__link" id="openTermsModalFromPopup">
-                  Terms &amp; Policy
-                </button>
-              </span>
-            </label>
-            <p class="termsAgree__error" id="termsAgreeErrorModal" role="alert" hidden>
-              Please tick the box to agree to the Terms &amp; Policy before sending.
+          <form class="formCard bookingModal__form" id="bookingFormModal">
+            <div class="formCard__head">
+              <h3 class="formCard__title" id="bookingModalTitle">Booking Form</h3>
+              <p class="formCard__sub">We’ll prepare options based on your request.</p>
+            </div>
+
+            <div class="formGrid">
+              <label class="field">
+                <span class="field__label">Full Name</span>
+                <input class="field__input" name="name" type="text" placeholder="Your name" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Phone Number</span>
+                <input
+                  class="field__input"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  placeholder="e.g. 98765 43210"
+                  required
+                />
+              </label>
+              <label class="field field--full">
+                <span class="field__label">Select Service</span>
+                <select class="field__input" name="service" id="bookingServiceModal" required>
+                  <option value="" selected disabled>Choose a service</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field__label">Preferred Date</span>
+                <input class="field__input" name="date" type="date" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Preferred Time</span>
+                <input class="field__input" name="time" type="time" required />
+              </label>
+            </div>
+
+            <div class="termsAgree">
+              <label class="termsAgree__label">
+                <input
+                  class="termsAgree__check"
+                  type="checkbox"
+                  id="termsAgreeCheckModal"
+                  name="termsAgree"
+                  required
+                />
+                <span class="termsAgree__box" aria-hidden="true"></span>
+                <span class="termsAgree__text">
+                  I agree to the
+                  <button type="button" class="termsAgree__link" id="openTermsModalFromPopup">
+                    Terms &amp; Policy
+                  </button>
+                </span>
+              </label>
+              <p class="termsAgree__error" id="termsAgreeErrorModal" role="alert" hidden>
+                Please tick the box to agree to the Terms &amp; Policy before sending.
+              </p>
+            </div>
+
+            <button
+              class="btn btn--primary btn--full"
+              type="submit"
+              id="bookingSubmitModal"
+              disabled
+              aria-disabled="true"
+            >
+              Send on WhatsApp
+            </button>
+            <p class="formHint">
+              By submitting, you’ll be redirected to WhatsApp with your details pre-filled.
             </p>
-          </div>
-
-          <button
-            class="btn btn--primary btn--full"
-            type="submit"
-            id="bookingSubmitModal"
-            disabled
-            aria-disabled="true"
-          >
-            Send on WhatsApp
-          </button>
-          <p class="formHint">
-            By submitting, you’ll be redirected to WhatsApp with your details pre-filled.
-          </p>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
 
