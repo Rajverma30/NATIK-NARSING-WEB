@@ -195,7 +195,7 @@
             <a class="nav__link" href="#services">Services</a>
             <a class="nav__link" href="#why">Why Us</a>
             <a class="nav__link" href="#journey">Process</a>
-            <a class="nav__link nav__link--cta" href="#contact" data-book-cta data-booking-open>Book Now</a>
+            <a class="nav__link nav__link--cta" href="./nursing-booking.html" data-book-cta data-booking-link>Book Now</a>
           </div>
         </div>
       </nav>
@@ -226,7 +226,7 @@
             </p>
 
             <div class="hero__actions heroReveal" style="--d:3">
-              <a class="btn btn--primary" href="#contact" data-hero-cta data-booking-open>Book Nursing Service →</a>
+              <a class="btn btn--primary" href="./nursing-booking.html" data-hero-cta data-booking-link>Book Nursing Service →</a>
               <a class="btn btn--ghost" data-whatsapp-link href="#" rel="noopener">WhatsApp Us</a>
             </div>
 
@@ -427,7 +427,7 @@
                   </div>
                 </div>
                 <div class="svcPane__actions">
-                  <a class="btn btn--dark" href="#contact" data-booking-open>Book Now</a>
+                  <a class="btn btn--dark" href="./nursing-booking.html" data-booking-link>Book Now</a>
                 </div>
               </article>
 
@@ -478,7 +478,7 @@
                   </div>
                 </div>
                 <div class="svcPane__actions">
-                  <a class="btn btn--accent" href="#contact" data-booking-open>Book Now</a>
+                  <a class="btn btn--accent" href="./nursing-booking.html" data-booking-link>Book Now</a>
                 </div>
               </article>
             </div>
@@ -523,7 +523,7 @@
                 </div>
               </div>
               <div class="svcPane__actions">
-                <a class="btn btn--dark" href="#contact" data-booking-open>Book Now</a>
+                <a class="btn btn--dark" href="./housekeeping-booking.html" data-booking-link>Book Now</a>
               </div>
             </article>
           </div>
@@ -750,7 +750,7 @@
               Share your details and required service — we’ll confirm availability and schedule via
               WhatsApp.
             </p>
-            <a class="btn btn--primary btn--lg" href="#bookingForm" data-contact-cta data-booking-open
+            <a class="btn btn--primary btn--lg" href="./nursing-booking.html" data-contact-cta data-booking-link
               >Book Nursing Support →</a
             >
           </div>
@@ -1436,123 +1436,6 @@
             I Agree
           </button>
           <button type="button" class="btn btn--ghost" data-terms-close>Close</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Booking popup modal -->
-    <div
-      class="bookingModal"
-      id="bookingModal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="bookingModalTitle"
-      hidden
-    >
-      <div class="bookingModal__backdrop" data-booking-close tabindex="-1"></div>
-      <div class="bookingModal__panel">
-        <button type="button" class="bookingModal__close" data-booking-close aria-label="Close booking form">
-          ✕
-        </button>
-        <div class="bookingModal__layout">
-          <aside class="bookingModal__brand" aria-hidden="true">
-            <div class="bookingModal__logoShell">
-              <img
-                class="bookingModal__logo"
-                src="./images/brand/logo-full.webp"
-                width="240"
-                height="160"
-                alt="Naitik Enterprises"
-                decoding="async"
-              />
-            </div>
-            <div class="bookingModal__trust">
-              <p class="bookingModal__trustLine">Trusted care for every home.</p>
-              <h3 class="bookingModal__trustTitle">Verified staff. Clear coordination. Compassion first.</h3>
-              <p class="bookingModal__trustSub">
-                Fast response, professional support, and a team families can trust in important moments.
-              </p>
-              <ul class="bookingModal__points">
-                <li>Trained and reliable service staff</li>
-                <li>Simple booking with quick WhatsApp confirmation</li>
-                <li>Care focused on comfort, safety, and dignity</li>
-              </ul>
-            </div>
-          </aside>
-
-          <form class="formCard bookingModal__form" id="bookingFormModal">
-            <div class="formCard__head">
-              <h3 class="formCard__title" id="bookingModalTitle">Booking Form</h3>
-              <p class="formCard__sub">We’ll prepare options based on your request.</p>
-            </div>
-
-            <div class="formGrid">
-              <label class="field">
-                <span class="field__label">Full Name</span>
-                <input class="field__input" name="name" type="text" placeholder="Your name" required />
-              </label>
-              <label class="field">
-                <span class="field__label">Phone Number</span>
-                <input
-                  class="field__input"
-                  name="phone"
-                  type="tel"
-                  inputmode="tel"
-                  placeholder="e.g. 98765 43210"
-                  required
-                />
-              </label>
-              <label class="field field--full">
-                <span class="field__label">Select Service</span>
-                <select class="field__input" name="service" id="bookingServiceModal" required>
-                  <option value="" selected disabled>Choose a service</option>
-                </select>
-              </label>
-              <label class="field">
-                <span class="field__label">Preferred Date</span>
-                <input class="field__input" name="date" type="date" required />
-              </label>
-              <label class="field">
-                <span class="field__label">Preferred Time</span>
-                <input class="field__input" name="time" type="time" required />
-              </label>
-            </div>
-
-            <div class="termsAgree">
-              <label class="termsAgree__label">
-                <input
-                  class="termsAgree__check"
-                  type="checkbox"
-                  id="termsAgreeCheckModal"
-                  name="termsAgree"
-                  required
-                />
-                <span class="termsAgree__box" aria-hidden="true"></span>
-                <span class="termsAgree__text">
-                  I agree to the
-                  <button type="button" class="termsAgree__link" id="openTermsModalFromPopup">
-                    Terms &amp; Policy
-                  </button>
-                </span>
-              </label>
-              <p class="termsAgree__error" id="termsAgreeErrorModal" role="alert" hidden>
-                Please tick the box to agree to the Terms &amp; Policy before sending.
-              </p>
-            </div>
-
-            <button
-              class="btn btn--primary btn--full"
-              type="submit"
-              id="bookingSubmitModal"
-              disabled
-              aria-disabled="true"
-            >
-              Send on WhatsApp
-            </button>
-            <p class="formHint">
-              By submitting, you’ll be redirected to WhatsApp with your details pre-filled.
-            </p>
-          </form>
         </div>
       </div>
     </div>

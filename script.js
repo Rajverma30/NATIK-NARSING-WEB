@@ -222,14 +222,12 @@
 
   const fillBookingOptions = (service) => {
     const select = $("#bookingService");
-    const modalSelect = $("#bookingServiceModal");
     const options = COPY[service].services;
     const optionHtml =
       '<option value="" selected disabled>Choose a service</option>' +
       options.map((o) => `<option>${o}</option>`).join("");
     if (!select) return;
     select.innerHTML = optionHtml;
-    if (modalSelect) modalSelect.innerHTML = optionHtml;
   };
 
   const setWhatsAppLinks = (service) => {
@@ -241,6 +239,14 @@
     });
     const ghost = $$(".hero__actions [data-whatsapp-link]")[0];
     if (ghost) ghost.textContent = COPY[service].waGhost;
+  };
+
+  const setBookingLinks = (service) => {
+    const href =
+      service === "housekeeping" ? "./housekeeping-booking.html" : "./nursing-booking.html";
+    $$("[data-booking-link]").forEach((link) => {
+      if (link.tagName === "A") link.setAttribute("href", href);
+    });
   };
 
   const setPhoneText = () => {
@@ -339,6 +345,7 @@
     setText("[data-status-b]", c.statusB);
     fillBookingOptions(service);
     setWhatsAppLinks(service);
+    setBookingLinks(service);
 
     // Meta Ads / social message-match
     const abs = (path) => {
@@ -869,8 +876,7 @@
     const closeTerms = () => {
       if (!modal) return;
       modal.hidden = true;
-      const bookingModal = $("#bookingModal");
-      if (!document.body.classList.contains("is-gated") && (!bookingModal || bookingModal.hidden)) {
+      if (!document.body.classList.contains("is-gated")) {
         document.body.style.overflow = "";
       }
     };
@@ -923,87 +929,6 @@
         "I agree to the Naitik Enterprises Terms & Policy.",
       ].join("\n");
       window.open(buildWhatsAppUrl(message), "_blank", "noopener");
-    });
-  };
-
-  const bookingPopup = () => {
-    const modal = $("#bookingModal");
-    const form = $("#bookingFormModal");
-    const check = $("#termsAgreeCheckModal");
-    const submit = $("#bookingSubmitModal");
-    const err = $("#termsAgreeErrorModal");
-    const openTerms = $("#openTermsModalFromPopup");
-    const openBtns = $$("[data-booking-open]");
-    if (!modal || !form || !check || !submit || !openBtns.length) return;
-
-    const syncSubmit = () => {
-      const ok = check.checked;
-      submit.disabled = !ok;
-      submit.setAttribute("aria-disabled", String(!ok));
-      if (ok && err) err.hidden = true;
-    };
-
-    const openPopup = () => {
-      modal.hidden = false;
-      document.body.style.overflow = "hidden";
-      syncSubmit();
-    };
-
-    const closePopup = () => {
-      modal.hidden = true;
-      if (!document.body.classList.contains("is-gated")) {
-        document.body.style.overflow = "";
-      }
-    };
-
-    openBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openPopup();
-      });
-    });
-
-    modal.querySelectorAll("[data-booking-close]").forEach((el) => {
-      el.addEventListener("click", closePopup);
-    });
-
-    openTerms?.addEventListener("click", (e) => {
-      e.preventDefault();
-      $("#openTermsModal")?.click();
-    });
-
-    check.addEventListener("change", syncSubmit);
-    syncSubmit();
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !modal.hidden) closePopup();
-    });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!check.checked) {
-        if (err) err.hidden = false;
-        check.focus();
-        return;
-      }
-      if (err) err.hidden = true;
-
-      const fd = new FormData(form);
-      const message = [
-        "Hello Naitik Enterprises!",
-        `I want to book a ${COPY[currentService].label.toLowerCase()} service.`,
-        "",
-        `Name: ${String(fd.get("name") || "").trim()}`,
-        `Phone: ${sanitizePhone(fd.get("phone"))}`,
-        `Service: ${String(fd.get("service") || "").trim()}`,
-        `Preferred Date: ${String(fd.get("date") || "").trim()}`,
-        `Preferred Time: ${String(fd.get("time") || "").trim()}`,
-        `City/Area: ${CONFIG.defaultCity}`,
-        "",
-        "I agree to the Naitik Enterprises Terms & Policy.",
-      ].join("\n");
-      window.open(buildWhatsAppUrl(message), "_blank", "noopener");
-      closePopup();
     });
   };
 
@@ -1120,7 +1045,6 @@
     revealOnScroll();
     journeyObserver();
     bookingForm();
-    bookingPopup();
     careerForm();
     fab();
     heroParticles();
