@@ -18,22 +18,49 @@
 
         <div class="bookingPage__grid" style="margin-top: 18px">
           <section class="bookingPage__panel reveal is-visible">
-            <div class="bookingPage__logoShell">
-              <img
-                class="bookingPage__logo"
-                src="./images/brand/logo-full.webp"
-                width="240"
-                height="160"
-                alt="Naitik Enterprises"
-              />
+            <div class="bookingPage__panelGrid">
+              <div class="bookingPage__content">
+                <div class="bookingPage__logoShell">
+                  <img
+                    class="bookingPage__logo"
+                    src="./images/brand/logo-full.webp"
+                    width="240"
+                    height="160"
+                    alt="Naitik Enterprises"
+                  />
+                </div>
+                <p class="bookingPage__eyebrow">Trusted home care booking</p>
+                <h1 class="bookingPage__title" id="bookingPageTitle">Book Nursing Care</h1>
+                <p class="bookingPage__sub" id="bookingPageSubtitle">
+                  Share your care requirement and preferred timing. We will coordinate quickly on WhatsApp with the right support options.
+                </p>
+                <div class="bookingPage__chips" id="bookingPageChips"></div>
+                <ul class="bookingPage__points" id="bookingPagePoints"></ul>
+              </div>
+
+              <div class="bookingPage__visual bookingPage__visual--nursing" aria-hidden="true">
+                <div class="bookingVisual bookingVisual--nurse">
+                  <div class="bookingVisual__glow"></div>
+                  <img
+                    class="bookingVisual__photo"
+                    src="./images/nursing-hero-640.webp"
+                    width="320"
+                    height="240"
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <div class="bookingVisual__badge">
+                    <span class="bookingVisual__badgeIcon">👩‍⚕️</span>
+                    <span>Professional Nurse</span>
+                  </div>
+                  <svg class="bookingVisual__ecg" viewBox="0 0 200 40" aria-hidden="true">
+                    <path d="M0 20 H40 L52 8 L64 32 L76 20 H200" />
+                  </svg>
+                </div>
+              </div>
             </div>
-            <p class="bookingPage__eyebrow">Trusted home care booking</p>
-            <h1 class="bookingPage__title" id="bookingPageTitle">Book Nursing Care</h1>
-            <p class="bookingPage__sub" id="bookingPageSubtitle">
-              Share your care requirement and preferred timing. We will coordinate quickly on WhatsApp with the right support options.
-            </p>
-            <div class="bookingPage__chips" id="bookingPageChips"></div>
-            <ul class="bookingPage__points" id="bookingPagePoints"></ul>
+
             <div class="bookingPage__pulse">
               <span class="bookingPage__pulseDot" aria-hidden="true"></span>
               <span><span data-booking-service-label>Nursing</span> team available for quick response</span>
