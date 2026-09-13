@@ -1,0 +1,26 @@
+{
+  "name": "Naitik Enterprises — Home Care & Housekeeping",
+  "short_name": "Naitik Care",
+  "description": "Trusted home nursing care, bedside caregivers, elder care, ICU at home, and professional housekeeping services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/brand/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/brand/favicon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

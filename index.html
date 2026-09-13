@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,16 +16,26 @@
     <link rel="apple-touch-icon" href="./images/brand/favicon-180.png" />
     <link rel="shortcut icon" href="./favicon.ico" />
 
+    <!-- SEO Meta Directives & Web App Manifest -->
+    <meta name="keywords" content="home nursing care, nursing services at home, bedside caregiver, patient care at home, elder care, ICU at home, mother and baby care, home doctor visit, housekeeping services, deep cleaning, Naitik Enterprises, Indore nursing care" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Naitik Enterprises" />
+    <meta name="theme-color" content="#0d9488" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
     <!-- Meta Ads / social preview -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Naitik Enterprises" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://naitikenterprises.com/" />
     <meta property="og:title" id="ogTitle" content="Home Nursing Care | Naitik Enterprises" />
     <meta
       property="og:description"
       id="ogDescription"
       content="Professional nursing care at home. Book on WhatsApp — trained staff and reliable coordination."
     />
-    <meta property="og:image" id="ogImage" content="./images/brand/logo-full.webp" />
+    <meta property="og:image" id="ogImage" content="https://naitikenterprises.com/images/brand/logo-full.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" id="twTitle" content="Home Nursing Care | Naitik Enterprises" />
     <meta
@@ -33,7 +43,110 @@
       id="twDescription"
       content="Professional nursing care at home. Book on WhatsApp — trained staff and reliable coordination."
     />
-    <link rel="canonical" id="canonicalLink" href="/?service=nursing" />
+    <meta name="twitter:image" content="https://naitikenterprises.com/images/brand/logo-full.webp" />
+    <link rel="canonical" id="canonicalLink" href="https://naitikenterprises.com/?service=nursing" />
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://naitikenterprises.com/#organization",
+          "name": "Naitik Enterprises",
+          "url": "https://naitikenterprises.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://naitikenterprises.com/images/brand/logo-full.webp"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+917000150604",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Hindi"]
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Pramila Gehlot"
+          }
+        },
+        {
+          "@type": ["HomeHealthCareService", "HouseCleaningService", "LocalBusiness"],
+          "@id": "https://naitikenterprises.com/#localbusiness",
+          "name": "Naitik Enterprises — Home Nursing & Housekeeping",
+          "image": "https://naitikenterprises.com/images/brand/logo-full.webp",
+          "url": "https://naitikenterprises.com/",
+          "telephone": "+917000150604",
+          "email": "info@naitikenterprises.com",
+          "priceRange": "₹₹",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Indore",
+            "addressRegion": "Madhya Pradesh",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "22.7072337",
+            "longitude": "75.9017387"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Home Healthcare and Cleaning Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Home Nursing Care",
+                  "description": "Daily assistance, vitals monitoring, injections, dressing, and skilled nursing care at home."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Bedside Caregiver",
+                  "description": "Personal hygiene, mobility support, feeding, and bedside companionship."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Elder Care",
+                  "description": "Daily assistance, medication reminders, and fall-prevention for seniors."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "ICU at Home",
+                  "description": "Advanced nursing and critical care monitoring at home."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Residential & Commercial Housekeeping",
+                  "description": "Professional cleaning, sanitization, deep cleaning, and office maintenance."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

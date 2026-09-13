@@ -1,0 +1,6 @@
+# Allow all search engine crawlers full access to the site
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://naitikenterprises.com/sitemap.xml
